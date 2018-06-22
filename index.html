@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport">
+  <title>火球自媒体管理系统</title>
+  <script>
+    // 设置rem字号
+    ;(function () {
+      var docEl = document.documentElement;
+      var resize = 'orientationchange' in window ? 'orientationchange' : 'resize';
+      var setRem = function () {
+        var screenWidth = docEl.clientWidth || window.screen.width || 350;
+        screenWidth = screenWidth > 600 ? 600 : screenWidth;
+        docEl.style.fontSize = (100 * screenWidth / 375) / 10 + 'px';
+      };
+      // 屏幕大小变化后重新设置rem字号
+      window.addEventListener(resize, setRem, false);
+      setRem();
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <!-- Dependencies -->
+  <!-- <script src="./node_modules/react/umd/react.development.js"></script>
+        <script src="./node_modules/react-dom/umd/react-dom.development.js"></script> -->
+
+  <!-- Main -->
+  <!-- <script src="http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=3.2.0"></script> -->
+  <script src="/dist/vendor.bundle.js"></script>
+  <script src="/dist/bundle.js"></script>
+  <script>
+    // new VConsole();
+  </script>
+</body>
+
+</html>

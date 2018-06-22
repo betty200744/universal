@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh" >
+
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="dns-prefetch" href="//cdn.image.huoqiuapp.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>火球小店</title>
+  <script>
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function () {
+      _vds.push(['setAccountId', '9304a05399eec55d']);
+      (function () {
+        var vds = document.createElement('script');
+        vds.type = 'text/javascript';
+        vds.async = true;
+        vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(vds, s);
+      })();
+    })();
+    // 设置rem字号
+    ;
+    (function () {
+      var docEl = document.documentElement;
+      var resize = 'orientationchange' in window ? 'orientationchange' : 'resize';
+      var setRem = function () {
+        var screenWidth = docEl.clientWidth || window.screen.width || 350;
+        screenWidth = screenWidth > 600 ? 600 : screenWidth;
+        docEl.style.fontSize = (100 * screenWidth / 375) / 10 + 'px';
+      };
+      // 屏幕大小变化后重新设置rem字号
+      window.addEventListener(resize, setRem, false);
+      setRem();
+    })();
+
+  </script>
+</head>
+
+<body>
+  <div id="example"></div>
+
+  <!-- Dependencies -->
+  <!-- <script src="./node_modules/react/umd/react.development.js"></script>
+        <script src="./node_modules/react-dom/umd/react-dom.development.js"></script> -->
+  <% if(raven) { %>
+  <script src="//cdn.image.huoqiuapp.com/admin/cdn/js/raven.3.22.1.min.js"></script>
+  <script>
+    Raven.config('https://a70a056694424f49bfc1814f7ee41b90@sentry.io/1217612', {
+      release: '1-1-1',
+      environment: 'production',
+    }).install()
+  </script>
+  <% } %>
+  <!-- Main -->
+  <script src="<%= vendorPath %>"></script>
+  <script src="<%= bundlePath %>"></script>
+
+</body>
+
+</html>
