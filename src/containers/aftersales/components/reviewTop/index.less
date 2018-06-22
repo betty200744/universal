@@ -1,0 +1,33 @@
+.top {
+  padding: 1.6rem;
+  display: flex;
+  background-color: #ffffff;
+  .topImg {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin-right: 1.6rem;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .topText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    >div {
+      &:first-child {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        color: #424242;
+        margin-bottom: 1.5rem;
+      }
+      &:last-child {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: #ababab;
+      }
+    }
+  }
+}
