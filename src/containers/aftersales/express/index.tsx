@@ -26,7 +26,7 @@ class App extends React.Component<IProps, IState> {
           <div>1</div>
         </Panel>
 
-        <Panel>
+        {/* <Panel>
           <div>寄回运费</div>
           <div>1</div>
         </Panel>
@@ -34,7 +34,7 @@ class App extends React.Component<IProps, IState> {
         <Panel>
           <div>支付宝账号</div>
           <div>1</div>
-        </Panel>
+        </Panel> */}
 
         <Panel>
           <div>上传凭证</div>

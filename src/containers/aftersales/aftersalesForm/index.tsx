@@ -2,21 +2,49 @@ import * as React from 'react';
 import { Title, Image } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
+import NumberInput from '../components/number';
+import Picker from '../components/picker';
 // import Uploader from '../components/uploader';
 import { grayArrow } from '../../../utils/imgUrl';
 const Styles = require('./index.less');
 
+interface Options {
+  value: number | string;
+  label: string;
+}
 interface IProps { }
 
-interface IState { }
+interface IState {
+  number: number;
+  showOptions: boolean;
+}
+
+const options = [
+  { value: 1, label: '撤销申请' },
+  { value: 12, label: '撤销申请' },
+  { value: 13, label: '撤销申请' },
+  { value: 1, label: '撤销申请' },
+  { value: 1, label: '撤销申请' },
+  { value: 1, label: '撤销申请' },
+  { value: 1, label: '撤销申请' },
+  { value: 1, label: '撤销申请' },
+];
 
 class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      number: 3,
+      showOptions: true,
+    };
+  }
+
+  onClickPicker = (options: Options) => {
+
   }
 
   render() {
+    const { number, showOptions } = this.state;
     return (
       <div>
         <Title title="122" goBack />
@@ -25,7 +53,7 @@ class App extends React.Component<IProps, IState> {
         <div>
 
           <Panel className={Styles.reason}>
-            <div className={Styles.reasonTop}>
+            <div className={Styles.reasonTop} onClick={() => this.setState({ showOptions: true })}>
               <div>七天无理由退货</div>
               <div>
                 <Image src={grayArrow} />
@@ -40,9 +68,7 @@ class App extends React.Component<IProps, IState> {
             <div className={Styles.label}>
               商品数量
             </div>
-            <div>
-              1
-            </div>
+            <NumberInput value={number} maxValue={3} onChange={(e: number) => this.setState({ number: e })} />
           </Panel>
 
           <Panel className={Styles.price}>
@@ -84,6 +110,14 @@ class App extends React.Component<IProps, IState> {
             </div>
           </Panel>
         </div>
+
+        <Picker
+          show={showOptions}
+          options={options}
+          label="如有问题可二次申请"
+          onClick={this.onClickPicker}
+          onClickCancel={() => this.setState({ showOptions: false })}
+        />
       </div>
     );
   }

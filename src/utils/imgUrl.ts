@@ -1,9 +1,12 @@
 const aftersales = 'https://cdn.image.huoqiuapp.com/cdn/universal/aftersales/';
-export const grayArrow = `https://cdn.image.huoqiuapp.com/cdn/app/gray-arrow.svg`;
 
 export const refundIcon = `${aftersales}refund-icon.svg`;
 export const replacementIcon = `${aftersales}replacement-icon.svg`;
 export const reimburseIcon = `${aftersales}reimburse-icon.svg`;
+export const blackArrow = `${aftersales}black-arrow.svg`;
+export const grayArrow = `${aftersales}gray-arrow.svg`;
+
+
 // export const buyArrow = `${cdn}distribute/buy-arrow-1@3x.png`;
 // export const mineOrder = `${cdn}mine-order.svg`;
 // export const mineSupport = `${cdn}mine-support.svg`;
@@ -29,7 +32,6 @@ export const reimburseIcon = `${aftersales}reimburse-icon.svg`;
 // export const download = `${cdn}distribute/download.jpg`;
 // export const ios = `${cdn}distribute/shape.svg`;
 // export const android = `${cdn}distribute/android.svg`;
-// export const blackArrow = `${cdn}distribute/black-arrow.png`;
 // export const whiteBack = `${cdn}distribute/white-back.svg`;
 // export const blackBack = `${cdn}distribute/black-back.svg`;
 // export const navBack = `${cdn}distribute/nav-back.svg`;
