@@ -20,7 +20,8 @@ module.exports = {
     'indent': ['error', 2],
     'react/jsx-indent-props': ['error', 2],
     'prefer-template': 'error',
-    "typescript/member-ordering":'off' ,
+    "typescript/member-ordering":'off',
+    'prefer-promise-reject-errors': 'off',
     "valid-jsdoc": [2, {
       "prefer": {
           "return": "returns"

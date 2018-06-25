@@ -8,7 +8,7 @@ export { default as Title } from './title';
 // export { default as AllPageTitle } from './title/allPage';
 // export { default as BottomTab } from './bottomTab';
 // export { default as Radio } from './radio';
-// export { default as Message } from './message/index';
+export { default as Message } from './message/index';
 // export { default as OpenTips } from './openTips/index';
 // export { default as Guide } from './guide/index';
 // export { default as ReviewListComponent } from './reviewListComponent/index';

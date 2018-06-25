@@ -1,0 +1,75 @@
+@import "../../styles/variables";
+
+.container {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right:0;
+  left:0;
+  width: 100%;
+  pointer-events: none;
+
+  .messageItem {
+
+    opacity: 0;
+    transform: translateY(-5rem);
+    transition: all .25s ease;
+    text-align: center;
+
+    .messageItemContent {
+      display: flex;
+      align-items: center;
+      // justify-content: center;
+      position: relative;
+      //width: 200px;
+      // max-width: 20rem;
+      // height: 4rem;
+      margin: 0 auto 1rem;
+      padding:2rem 1.6rem ;
+      // border-radius: 0.8rem;
+      background-color: @white;
+      color: @black;
+      box-shadow: 0 1.6rem 3.2rem 0 rgba(153, 153, 153, 0.1);
+
+      .icon {
+        width: 2.2rem;
+        min-width: 2.2rem;
+        height: 2.2rem;
+        //left: 6px;
+        background: no-repeat center center / 2.2rem;
+        margin-right: 1.5rem;
+      }
+
+      .text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: @font-size-base;
+        color: #222;
+      }
+    }
+    &.success {
+      .icon {
+        background-image: url("https://cdn.image.huoqiuapp.com/javis/icon/success-message@3x.png");
+      }
+    }
+    &.error {
+      .icon {
+        background-image: url("https://oexd4utdf.qnssl.com/fireball-ui/cdn/img/error-icon@3x.png");
+      }
+    }
+    &.warning {
+      .icon {
+        background-image: url("https://oexd4utdf.qnssl.com/fireball-ui/cdn/img/warning-icon@3x.png");
+      }
+    }
+    &.showMessage {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    &.hideMessage {
+      opacity: 0;
+      transform: translateY(-5rem);
+    }
+  }
+}

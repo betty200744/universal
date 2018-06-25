@@ -4,7 +4,7 @@ import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import NumberInput from '../components/number';
 import Picker from '../components/picker';
-// import Uploader from '../components/uploader';
+import Uploader from '../components/uploader';
 import { grayArrow } from '../../../utils/imgUrl';
 const Styles = require('./index.less');
 
@@ -35,7 +35,7 @@ class App extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       number: 3,
-      showOptions: true,
+      showOptions: false,
     };
   }
 
@@ -104,7 +104,7 @@ class App extends React.Component<IProps, IState> {
             </div>
 
             <div className={Styles.photoUpload}>
-              {/* <Uploader /> */}
+              <Uploader onChange={(e: any) => console.log(e)} />
               <Image src={grayArrow} />
               <Image src={grayArrow} />
             </div>
