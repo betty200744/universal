@@ -11,29 +11,30 @@ const Styles = require('./index.less');
 const r = random();
 
 interface IProps {
-  onChange(e: any): void;
+  maxNumber: number;
+  onChange(e: Array<string>): void;
 }
 
 interface IState { }
 
 class App extends React.Component<IProps, IState> {
-  dropZone: any = null;
-  getToken = (upload: any) => {
-    const token = Cookies.get('qiniuToken');
-    if (token) {
-      upload(token);
-    } else {
-      get('/api/token/qiniu').then((resp: any) => {
-        const expiresTime = new Date(Date.now() + (3000 * 1000));  // 七牛token 3600 秒过期；
-        Cookies.set('qiniuToken', resp.token, { expires: expiresTime });
-        upload(resp.token);
-      });
-    }
+  getToken = () => {
+    return new Promise((resolve, reject) => {
+      const token = Cookies.get('qiniuToken');
+      if (token) {
+        resolve(token);
+      } else {
+        get('/api/token/qiniu').then((resp: any) => {
+          const expiresTime = new Date(Date.now() + (3000 * 1000));  // 七牛token 3600 秒过期；
+          Cookies.set('qiniuToken', resp.token, { expires: expiresTime });
+          resolve(resp.token);
+        });
+      }
+    });
   }
-  uploadImage = (token: string, files: any) => {
+  uploadImage = (token: string, files: FileList) => {
     const { onChange } = this.props;
-    console.log(123, Array.from(files));
-    const queue = Array.from(files).map((file: any) => {
+    const queue = Array.from(files).map((file: File) => {
       const formData = new FormData();
 
       const name = r.hex(20);
@@ -43,7 +44,7 @@ class App extends React.Component<IProps, IState> {
       formData.append('file', file);
       formData.append('token', token);
 
-      return new Promise((resolve: any, reject: any) => {
+      return new Promise<string>((resolve, reject) => {
         superagent.post('//upload.qiniu.com').send(formData).end((err, res) => {
           const { body } = res;
           if (body && body.key) {
@@ -61,16 +62,18 @@ class App extends React.Component<IProps, IState> {
     }).catch(Message.error);
   };
 
-  onChange = (e: any) => {
-    console.log(e.target.files);
-    this.getToken((token: string) => this.uploadImage(token, e.target.files));
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.getToken().then((token: string) => {
+      this.uploadImage(token, e.target.files);
+    });
   }
   render() {
+    const { maxNumber } = this.props;
     return (
       <div className={Styles.uploader}>
         <label htmlFor="file">
           <Image src={uploadBg} />
-          <div>最多 9 张</div>
+          <div>最多 {maxNumber} 张</div>
         </label>
         <input
           type="file"

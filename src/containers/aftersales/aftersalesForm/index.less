@@ -37,6 +37,7 @@
   justify-content: space-between;
   align-items: center;
   height: 7.4rem;
+  position: relative;
   .priceNote {
     margin-top: 0.8rem;
     font-size: 1rem;
@@ -49,6 +50,10 @@
     font-family: "SFUIDisplayMedium";
     font-size: 1.6rem;
     color: #ff3c50;
+  }
+  input {
+    position: absolute;
+    right: 1000rem;
   }
 }
 
@@ -87,21 +92,7 @@
 
 .photo {
   padding: 1.6rem;
-  .photoUpload {
-    margin-top: 1.6rem;
-    display: flex;
-    > img {
-      width: 10.5rem;
-      height: 10.5rem;
-      border-radius: 8px;
-      margin-right: 1.6rem;
-      margin-bottom: 1.6rem;
-      
-    }
-    > *&:nth-child(3n) {
-      margin-right: 0;
-    }
-  }
+
 }
 
 .label {

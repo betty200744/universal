@@ -4,7 +4,8 @@ import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import NumberInput from '../components/number';
 import Picker from '../components/picker';
-import Uploader from '../components/uploader';
+import Uploader from '../components/uploadImage';
+import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
 const Styles = require('./index.less');
 
@@ -17,6 +18,7 @@ interface IProps { }
 interface IState {
   number: number;
   showOptions: boolean;
+  price: string;
 }
 
 const options = [
@@ -36,6 +38,7 @@ class App extends React.Component<IProps, IState> {
     this.state = {
       number: 3,
       showOptions: false,
+      price: '0',
     };
   }
 
@@ -78,7 +81,8 @@ class App extends React.Component<IProps, IState> {
               </div>
               <div className={Styles.priceNote}>最多 <span>¥ 511.00 </span>，含邮费<span> ¥ 11.00</span></div>
             </div>
-            <div className={Styles.priceNum}>¥ 250.00</div>
+            <label htmlFor="price" className={Styles.priceNum}>¥ {this.state.price}</label>
+            <input id="price" type="number" pattern="\d*" onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ price: e.target.value })} />
           </Panel>
 
           <Panel className={Styles.note}>
@@ -103,18 +107,16 @@ class App extends React.Component<IProps, IState> {
               上传凭证
             </div>
 
-            <div className={Styles.photoUpload}>
-              <Image src={grayArrow} />
-              <Image src={grayArrow} />
-              <Uploader onChange={(e: any) => console.log(e)} />
-            </div>
+            <Uploader
+              onDelete={(i) => console.log(i)}
+              onChange={(e: Array<string>) => console.log(e)}
+              maxNumber={9}
+              imgs={[grayArrow, grayArrow, grayArrow]}
+            />
           </Panel>
         </div>
 
-        <div style={{ height: '5rem' }}></div>
-        <div className={Styles.submit}>
-          <div>提交</div>
-        </div>
+        <Submit />
 
         <Picker
           show={showOptions}

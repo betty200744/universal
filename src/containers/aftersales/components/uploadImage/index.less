@@ -1,0 +1,25 @@
+.photoUpload {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  .img {
+    position: relative;
+    margin-right: 1.4rem;
+    margin-bottom: 1.4rem;
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    > .imgMain {
+      width: 10.5rem;
+      height: 10.5rem;
+      border-radius: 8px;
+    }
+    .close {
+      position: absolute;
+      right: -1rem;
+      top: -0.8rem;
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+  }
+}

@@ -18,7 +18,7 @@ interface IProps {
 interface IState { }
 
 class App extends React.Component<IProps, IState> {
-  disableScroll = (e: any) => {
+  disableScroll = (e: MouseEvent) => {
     console.log(e);
     if (this.props.show) {
       e.preventDefault();
