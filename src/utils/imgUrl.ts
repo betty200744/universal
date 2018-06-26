@@ -5,6 +5,8 @@ export const replacementIcon = `${aftersales}replacement-icon.svg`;
 export const reimburseIcon = `${aftersales}reimburse-icon.svg`;
 export const blackArrow = `${aftersales}black-arrow.svg`;
 export const grayArrow = `${aftersales}gray-arrow.svg`;
+export const closeIcon = `${aftersales}close.svg`;
+export const uploadBg = `${aftersales}upload.svg`;
 
 
 // export const buyArrow = `${cdn}distribute/buy-arrow-1@3x.png`;

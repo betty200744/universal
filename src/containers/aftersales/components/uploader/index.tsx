@@ -4,6 +4,7 @@ import * as random from 'random-js';
 import * as superagent from 'superagent';
 import { get } from '@util/srequest';
 import { Message, Image } from '../../../../components';
+import { uploadBg } from '../../../../utils/imgUrl';
 const Styles = require('./index.less');
 
 
@@ -68,7 +69,7 @@ class App extends React.Component<IProps, IState> {
     return (
       <div className={Styles.uploader}>
         <label htmlFor="file">
-          <Image />
+          <Image src={uploadBg} />
           <div>最多 9 张</div>
         </label>
         <input

@@ -104,11 +104,16 @@ class App extends React.Component<IProps, IState> {
             </div>
 
             <div className={Styles.photoUpload}>
+              <Image src={grayArrow} />
+              <Image src={grayArrow} />
               <Uploader onChange={(e: any) => console.log(e)} />
-              <Image src={grayArrow} />
-              <Image src={grayArrow} />
             </div>
           </Panel>
+        </div>
+
+        <div style={{ height: '5rem' }}></div>
+        <div className={Styles.submit}>
+          <div>提交</div>
         </div>
 
         <Picker
