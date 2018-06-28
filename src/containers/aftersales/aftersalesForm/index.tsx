@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Title, Image } from '../../../components';
+import { post } from '@util/srequest';
+import { Title, Image, Message } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import NumberInput from '../components/number';
@@ -7,6 +8,8 @@ import Picker from '../components/picker';
 import Uploader from '../components/uploadImage';
 import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
+import { getQuery, goToAftersalesPage } from '../../../utils/common';
+import { apiUrl } from '../../../utils/constant';
 const Styles = require('./index.less');
 
 interface Options {
@@ -16,9 +19,12 @@ interface Options {
 interface IProps { }
 
 interface IState {
+  review: SimpleReview;
   number: number;
   showOptions: boolean;
   price: string;
+  orderId: string;
+  productId: string;
 }
 
 const options = [
@@ -36,22 +42,52 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
+      review: {
+        _id: '',
+        title: '',
+        img: '',
+        spec: '',
+        amount: 0,
+      },
       number: 3,
       showOptions: false,
       price: '0',
+      orderId: getQuery('order'),
+      productId: getQuery('product'),
     };
   }
+  componentDidMount() {
+    const { orderId, productId } = this.state;
+    this.fetchProduct(orderId, productId);
+  }
+
+  fetchProduct = (orderId: string, productId: string) => {
+    const query = `query($id: ID!){
+      getReview(id: $id) {
+        _id
+        title
+        img
+        spec
+        amount
+      }
+    }`;
+    const variables = { orderId, productId };
+    post(apiUrl, { query, variables }).then((res: any) => {
+      this.setState({ review: res.getReview });
+    }).catch(Message.error);
+  }
+
 
   onClickPicker = (options: Options) => {
 
   }
 
   render() {
-    const { number, showOptions } = this.state;
+    const { number, showOptions, review } = this.state;
     return (
       <div>
         <Title title="122" goBack />
-        <ReviewTop />
+        <ReviewTop review={review} />
 
         <div>
 

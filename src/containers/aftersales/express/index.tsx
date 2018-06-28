@@ -16,7 +16,7 @@ class App extends React.Component<IProps, IState> {
       <div>
         <Title title="填写物流单号" goBack />
 
-        <ReviewTop />
+        {/* <ReviewTop /> */}
 
         <Panel>
           <div>物流公司</div>

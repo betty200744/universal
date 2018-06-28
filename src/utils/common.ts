@@ -1,5 +1,6 @@
 import { isFireball } from '@util/useragent';
-import { goBack as nativeGoBack } from './jsbridge';
+import { goBack as nativeGoBack, gotoPage } from './jsbridge';
+import history from './history';
 
 /**
  * 数字转换成两位小数的金额浮点数,
@@ -52,19 +53,16 @@ export const convertTimeString = (str: any, type = 'long', slicer = '-'): string
   return result;
 };
 
-export const goToPage = (url: string, history: any) => {
-  const realUrl = `/buyer${url}`;
-  // if (isFireball()) {
-  //   nativeGoToPage(realUrl)
-  //     .then((res: any) => {
-  //       Message.error(res);
-  //     });
-  // } else {
-  //   if (history) {
-  //     history.push(realUrl);
-  //   }
-  // }
-  history.push(realUrl);
+export const goToPage = (url: string) => {
+  if (isFireball()) {
+    gotoPage(url);
+  } else {
+    history.push(url);
+  }
+};
+
+export const goToAftersalesPage = (url: string) => {
+  goToPage(`/universal/aftersales${url}`);
 };
 
 export const goBack = (history: any) => {

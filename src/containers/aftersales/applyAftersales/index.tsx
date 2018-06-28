@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Title, Image } from '../../../components';
+import { post } from '@util/srequest';
+import { Message, Title, Image } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import { grayArrow, refundIcon, replacementIcon, reimburseIcon } from '../../../utils/imgUrl';
+import { getQuery, goToAftersalesPage } from '../../../utils/common';
+import { apiUrl } from '../../../utils/constant';
 const Styles = require('./index.less');
 
 interface ItemProps {
@@ -17,9 +20,9 @@ const list: Array<ItemProps> = [
 ];
 
 
-const Item = ({ item }: { item:ItemProps }) => {
+const Item = ({ item, onClick }: { item:ItemProps, onClick(item: ItemProps): void }) => {
   return (
-    <div key={item.type} className={Styles.item}>
+    <div key={item.type} className={Styles.item} onClick={() => onClick(item)}>
       <div className={Styles.itemImg}><Image src={item.img} /></div>
       <div className={Styles.itemText}>
         <div>{item.label}</div>
@@ -31,20 +34,67 @@ const Item = ({ item }: { item:ItemProps }) => {
   );
 };
 
+
 interface IProps { }
 
-interface IState { }
+interface IState {
+  review: SimpleReview;
+  orderId: string;
+  productId: string;
+}
 
 class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {
+      review: {
+        _id: '',
+        title: '',
+        img: '',
+        spec: '',
+        amount: 0,
+      },
+      orderId: getQuery('order'),
+      productId: getQuery('product'),
+    };
+  }
+
+  componentDidMount() {
+    const { orderId, productId } = this.state;
+    this.fetchProduct(orderId, productId);
+  }
+
+  fetchProduct = (orderId: string, productId: string) => {
+    const query = `query($id: ID!){
+      getReview(id: $id) {
+        _id
+        title
+        img
+        spec
+        amount
+      }
+    }`;
+    const variables = { orderId, productId };
+    post(apiUrl, { query, variables }).then((res: any) => {
+      this.setState({ review: res.getReview });
+    }).catch(Message.error);
+  }
+
+  onClick = (item: ItemProps) => {
+    const { orderId, productId } = this.state;
+    goToAftersalesPage(`/form?type=${item.type}&order=${orderId}&productId=${productId}`);
+  }
+
   render() {
+    const { review } = this.state;
     return (
       <div>
         <Title title="122" goBack />
 
-        <ReviewTop />
+        <ReviewTop review={review} />
 
         <div className={Styles.box}>
-          {list.map(e => (<Item key={e.type} item={e} />))}
+          {list.map(e => (<Item key={e.type} item={e} onClick={this.onClick} />))}
         </div>
       </div>
     );

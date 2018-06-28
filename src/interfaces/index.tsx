@@ -12,3 +12,11 @@ interface Option {
 interface SimpleMap {
   [x: string]: any;
 }
+
+interface SimpleReview {
+  _id: string;
+  img: string;
+  title: string;
+  spec: string;
+  amount: number;
+}

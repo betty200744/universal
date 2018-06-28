@@ -13,7 +13,7 @@ class App extends React.Component<IProps, IState> {
     return (
       <Panel className={Styles.info}>
         <div className={Styles.infoTitle}>售后信息</div>
-        <ReviewTop />
+        {/* <ReviewTop /> */}
 
         <div className={Styles.infoDetail}>
           <div>售后类型：退货退款</div>
