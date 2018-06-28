@@ -3,3 +3,12 @@ interface Window {
   HuoqiuJavascriptBridge: any;
   webkitURL: any;
 }
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface SimpleMap {
+  [x: string]: any;
+}

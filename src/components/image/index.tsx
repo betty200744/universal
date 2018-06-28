@@ -1,5 +1,16 @@
 import * as React from 'react';
 
+interface IProps {
+  src: string;
+  cycle?: boolean;
+  thumbnail?: boolean;
+  width?: number;
+  height?: number;
+  alt?: string;
+  style?: any;
+  [x: string]: any;
+}
+
 const defaultImage = 'https://cdn.image.huoqiuapp.com/javis/icon/default-image@3x.png';
 
 const getFontSize = (): number => {
@@ -23,7 +34,7 @@ const getThumbnail = (width: number): string => {
   return `?imageView2/2/w/${intSize * 2}`;
 };
 
-const Image = ({ style, width, height, cycle, src, alt, thumbnail = true, ...restProps }: any) =>
+const Image = ({ style, width, height, cycle, src, alt, thumbnail = true, ...restProps }: IProps) =>
   <img
     style={{
       width: getImageSize(width),

@@ -40,7 +40,7 @@ class App extends React.Component<IProps, IState> {
 
         <Panel>
           <div>上传凭证</div>
-          <Uploader onDelete={(i) => console.log(i)} onChange={(e: any) => console.log(e)} maxNumber={9} imgs={[grayArrow, grayArrow, grayArrow]} />
+          <Uploader onDelete={(i) => console.log(i)} onChange={(e: Array<string>) => console.log(e)} maxNumber={9} imgs={[grayArrow, grayArrow, grayArrow]} />
         </Panel>
       </div>
     );

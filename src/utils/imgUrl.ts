@@ -7,6 +7,9 @@ export const blackArrow = `${aftersales}black-arrow.svg`;
 export const grayArrow = `${aftersales}gray-arrow.svg`;
 export const closeIcon = `${aftersales}close.svg`;
 export const uploadBg = `${aftersales}upload.svg`;
+export const aftersaleDone = `${aftersales}aftersale-done.svg`;
+export const aftersaleUndo = `${aftersales}aftersale-undo.svg`;
+
 
 
 // export const buyArrow = `${cdn}distribute/buy-arrow-1@3x.png`;

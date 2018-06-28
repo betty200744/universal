@@ -111,7 +111,7 @@ class App extends React.Component<IProps, IState> {
               onDelete={(i) => console.log(i)}
               onChange={(e: Array<string>) => console.log(e)}
               maxNumber={9}
-              imgs={[grayArrow, grayArrow, grayArrow]}
+              imgs={[grayArrow, grayArrow, grayArrow, grayArrow]}
             />
           </Panel>
         </div>

@@ -58,31 +58,31 @@ const messageItem = (type: string, text: string) => {
   return document.getElementById(messageContainerId).appendChild(msgEl);
 };
 
-const showMessage = (el: any) => {
+const showMessage = (el: Element) => {
   const element = el;
   setTimeout(() => {
     element.className += ` ${Styles.showMessage}`;
   }, 20);
 };
 
-const hideMessage = (el: any, delay: number) => {
+const hideMessage = (el: Element, delay: number) => {
   const element = el;
   setTimeout(() => {
-    const classNames = element.className.split(' ').filter((item: any) => item !== Styles.showMessage);
+    const classNames = element.className.split(' ').filter((item: string) => item !== Styles.showMessage);
     classNames.push(Styles.hideMessage);
     element.className = classNames.join(' ');
     setTimeout(() => element.parentNode.removeChild(element), 300);
   }, delay || defaultDelayTime);
 };
 
-const animateMessage = (el: any, delay: number) => {
+const animateMessage = (el: Element, delay: number) => {
   showMessage(el);
   hideMessage(el, delay);
 };
 
 const addMessage = (type: string, text: string, delay: number) => animateMessage(messageItem(type, text), delay);
 
-const success = (text: string, delay: number) => addMessage('success', text, delay);
+const success = (text: string, delay?: number) => addMessage('success', text, delay);
 
 const calcErrorText = (text: string) => {
   if (text && text.indexOf('EOF') !== -1) {
@@ -91,11 +91,11 @@ const calcErrorText = (text: string) => {
   return text;
 };
 
-const error = (text: string, delay: number) => addMessage('error', calcErrorText(text), delay);
+const error = (text: string, delay?: number) => addMessage('error', calcErrorText(text), delay);
 
-const warning = (text: string, delay: number) => addMessage('warning', text, delay);
+const warning = (text: string, delay?: number) => addMessage('warning', text, delay);
 
-const Message: any = {
+const Message = {
   success,
   error,
   warning,

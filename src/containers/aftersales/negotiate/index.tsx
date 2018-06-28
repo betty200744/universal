@@ -5,7 +5,7 @@ const Styles = require('./index.less');
 
 const Item = () => (<div className={Styles.item}>
   <div className={Styles.itemTop}>
-    <div><Image src />系统</div>
+    <div><Image src={'1'} />系统</div>
     <div>2018.01.23 20:34</div>
   </div>
   <div className={Styles.itemBtm}>
