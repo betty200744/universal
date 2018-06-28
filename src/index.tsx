@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route, Router } from 'react-router-dom';
 import {
   afterSalesHome, afterSalesForm, afterSalesDetail,
 } from './indexChunk';
+import history from './utils/history';
 import configStore from './store';
 import './styles/reset.less';
 import './styles/font.less';
@@ -13,7 +14,7 @@ const store = configStore();
 const afterSalesRoutes = [
   { path: '/home', exact: true, component: afterSalesHome },
   { path: '/form', exact: true, component: afterSalesForm },
-  { path: '/detail', exact: true, component: afterSalesDetail },
+  { path: '/detail/:id', exact: true, component: afterSalesDetail },
 ];
 
 const otherRoutes = [
@@ -31,7 +32,7 @@ console.log(routes);
 const RenderRouter = (types: any) => {
   ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Switch>
             {
@@ -42,7 +43,7 @@ const RenderRouter = (types: any) => {
             }
           </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     </Provider>,
     document.getElementById('example'),
   );
