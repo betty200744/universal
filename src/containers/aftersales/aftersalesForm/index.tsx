@@ -39,6 +39,12 @@ const reasonText = [
   '请填写能反馈您所遇到问题的有效说明，并上传能证明您说明的有效图片作为凭证',
 ];
 
+const map: SimpleMap = {
+  refund: '退货退款',
+  replacement: '换货',
+  reimburse: '仅退款',
+};
+
 class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
@@ -117,12 +123,12 @@ class App extends React.Component<IProps, IState> {
 
   render() {
     const {
-      amount, showOptions, review, reasonOptions, description,
+      amount, showOptions, review, reasonOptions, description, type,
       reason, totalPrice, expectRefundTransferFee, phone, price, images,
     } = this.state;
     return (
       <div>
-        <Title title="122" goBack />
+        <Title title={map[type]} goBack />
         <ReviewTop review={review} />
 
         <div>

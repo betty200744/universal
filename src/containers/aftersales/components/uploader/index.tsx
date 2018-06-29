@@ -2,7 +2,7 @@ import * as React from 'react';
 import Cookies from 'js-cookie';
 import * as random from 'random-js';
 import * as superagent from 'superagent';
-import { get } from '@util/srequest';
+import { post } from '@util/srequest';
 import { Message, Image } from '../../../../components';
 import { uploadBg } from '../../../../utils/imgUrl';
 const Styles = require('./index.less');
@@ -24,11 +24,14 @@ class App extends React.Component<IProps, IState> {
       if (token) {
         resolve(token);
       } else {
-        get('/api/token/qiniu').then((resp: any) => {
+        const query = `query {
+          getQiniuUploadToken
+        }`;
+        post('/api/distribution/graphql', { query }).then((res: any) => {
           const expiresTime = new Date(Date.now() + (3000 * 1000));  // 七牛token 3600 秒过期；
-          Cookies.set('qiniuToken', resp.token, { expires: expiresTime });
-          resolve(resp.token);
-        });
+          Cookies.set('qiniuToken', res.getQiniuUploadToken, { expires: expiresTime });
+          resolve(res.getQiniuUploadToken);
+        }).catch(Message.error);
       }
     });
   }
