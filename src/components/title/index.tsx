@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { isFireball, isWeixin } from '@util/useragent';
-import { goBack as utilGoBack } from '../../utils/common';
+import history from '../../utils/history';
+import { goBack as nativeGoBack } from '../../utils/jsbridge';
 const Styles = require('./index.less');
 
 interface IProps {
@@ -11,7 +12,6 @@ interface IProps {
   goBack?: any;
   rightText?: String;
   line?: Boolean;
-  history: any;
   rightFn?(): void;
 }
 
@@ -19,12 +19,12 @@ interface IState { }
 
 class Title extends React.Component<IProps, IState> {
   onClickLeft = () => {
-    const { goBack, history } = this.props;
+    const { goBack } = this.props;
     if (goBack) {
-      if (typeof goBack === 'function') {
-        goBack();
+      if (isFireball()) {
+        nativeGoBack();
       } else {
-        utilGoBack(history);
+        history.goBack();
       }
     }
   }

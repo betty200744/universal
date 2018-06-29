@@ -5,6 +5,7 @@ const Styles = require('./index.less');
 
 interface IProps {
   className?: string;
+  onClick?(): void;
 }
 
 interface IState { }

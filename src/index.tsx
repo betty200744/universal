@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Switch, Route, Router } from 'react-router-dom';
 import {
-  afterSalesHome, afterSalesForm, afterSalesDetail,
+  afterSalesHome, afterSalesForm, afterSalesDetail, afterSalesNegotiate,
 } from './indexChunk';
 import history from './utils/history';
 import configStore from './store';
@@ -15,6 +15,7 @@ const afterSalesRoutes = [
   { path: '/home', exact: true, component: afterSalesHome },
   { path: '/form', exact: true, component: afterSalesForm },
   { path: '/detail/:id', exact: true, component: afterSalesDetail },
+  { path: '/negotiate/:id', exact: true, component: afterSalesNegotiate },
 ];
 
 const otherRoutes = [

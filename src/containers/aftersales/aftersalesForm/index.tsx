@@ -9,6 +9,7 @@ import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getQuery, goToAftersalesPage, numberToMoney } from '../../../utils/common';
 import { getRefundPrice, fetchData, createAfterSale } from './actions';
+import { typeMap } from '../constant';
 const Styles = require('./index.less');
 
 interface IProps { }
@@ -39,11 +40,7 @@ const reasonText = [
   '请填写能反馈您所遇到问题的有效说明，并上传能证明您说明的有效图片作为凭证',
 ];
 
-const map: SimpleMap = {
-  refund: '退货退款',
-  replacement: '换货',
-  reimburse: '仅退款',
-};
+
 
 class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
@@ -128,7 +125,7 @@ class App extends React.Component<IProps, IState> {
     } = this.state;
     return (
       <div>
-        <Title title={map[type]} goBack />
+        <Title title={typeMap[type]} goBack />
         <ReviewTop review={review} />
 
         <div>
