@@ -6,4 +6,5 @@ export const afterSalesHome = Loadable({ loader: () => import('./containers/afte
 export const afterSalesForm = Loadable({ loader: () => import('./containers/aftersales/aftersalesForm/index'), loading });
 export const afterSalesDetail = Loadable({ loader: () => import('./containers/aftersales/detail'), loading });
 export const afterSalesNegotiate = Loadable({ loader: () => import('./containers/aftersales/negotiate'), loading });
+export const afterSalesExpress = Loadable({ loader: () => import('./containers/aftersales/express'), loading });
 
