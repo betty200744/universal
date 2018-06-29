@@ -30,7 +30,7 @@ const Item = ({ item }: {item:Item}) => (<div className={Styles.item}>
   </div>
   <div className={Styles.itemBtm}>
     <div>{item.actionLabel}</div>
-    {item.detail.map((e: {key: string, val: string}) => <div key={e.val}>{e.key}: {e.val}</div>)}
+    {item.detail.map((e: {key: string, val: string}) => <div key={e.key}>{e.key}: {e.val}</div>)}
     {item.images && item.images.length ? item.images.map((e: string) => <div key={e}><Image src={e} /></div>) : null}
   </div>
 </div>);
