@@ -15,7 +15,7 @@ class App extends React.Component<IProps, IState> {
       <div className={Styles.top}>
         <div className={Styles.topImg}><Image src={review.img} /></div>
         <div className={Styles.topText}>
-          <div>{review.title}</div>
+          <div>{review.name}</div>
           <div>{review.spec} x {review.amount}</div>
         </div>
       </div>

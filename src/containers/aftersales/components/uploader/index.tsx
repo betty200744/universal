@@ -63,7 +63,9 @@ class App extends React.Component<IProps, IState> {
   };
 
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files);
     this.getToken().then((token: string) => {
+      console.log(e.target);
       this.uploadImage(token, e.target.files);
     });
   }

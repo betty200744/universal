@@ -16,7 +16,7 @@ interface SimpleMap {
 interface SimpleReview {
   _id: string;
   img: string;
-  title: string;
+  name: string;
   spec: string;
   amount: number;
 }

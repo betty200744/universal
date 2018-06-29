@@ -22,6 +22,7 @@ module.exports = {
     'prefer-template': 'error',
     "typescript/member-ordering":'off',
     'prefer-promise-reject-errors': 'off',
+    "max-params": "off",
     "valid-jsdoc": [2, {
       "prefer": {
           "return": "returns"

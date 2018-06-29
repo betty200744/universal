@@ -49,7 +49,7 @@ class App extends React.Component<IProps, IState> {
     this.state = {
       review: {
         _id: '',
-        title: '',
+        name: '',
         img: '',
         spec: '',
         amount: 0,
@@ -65,10 +65,10 @@ class App extends React.Component<IProps, IState> {
   }
 
   fetchProduct = (orderId: string, productId: string) => {
-    const query = `query($id: ID!){
-      getReview(id: $id) {
+    const query = `query(orderId: String, productId: String){
+      getApplySkuInfo(orderId: $orderId, productId: $productId) {
         _id
-        title
+        name
         img
         spec
         amount
