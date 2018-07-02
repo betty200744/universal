@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { post } from '@util/srequest';
-import { Button, Message, Image } from '../../../components';
+import { Title, Button, Message, Image } from '../../../components';
 import Submit from '../components/submit';
 import { apiUrl } from '../../../utils/constant';
 import { convertTimeString, getSupport } from '../../../utils/common';
@@ -101,6 +101,8 @@ class App extends React.Component<IProps, IState> {
   render() {
     return (
       <div>
+        <Title title="协商记录" goBack />
+
         {this.state.list.map((e: Item) => (<Item key={e.id} item={e} />))}
 
         <Submit>

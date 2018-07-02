@@ -36,7 +36,7 @@ class Button extends React.Component<IProps, IState> {
 
 
    getStyle = () => {
-     const { height = 35.5, width = 3.4 } = this.props;
+     const { height = 3.4, width = 35.5 } = this.props;
      const calcStyle = {
        width: `${width}rem`,
        height: `${height}rem`,

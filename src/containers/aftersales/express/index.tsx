@@ -4,7 +4,7 @@ import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import Submit from '../components/submit';
 import Uploader from '../components/uploadImage';
-import { getQuery, isValidated } from '../../../utils/common';
+import { getQuery, isValidated, goBack } from '../../../utils/common';
 import { fetchData, userDeliveryAfterSale } from './actions';
 const Styles = require('./index.less');
 
@@ -82,6 +82,7 @@ class App extends React.Component<IProps, IState> {
 
     userDeliveryAfterSale(afterSaleId, express, serialNo, images).then((res: any) => {
       Message.success('成功');
+      goBack();
     }).catch(Message.error);
   }
 
