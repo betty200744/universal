@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Title, Message } from '../../../components';
+import { Title, Message, Button } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import Submit from '../components/submit';
 import Uploader from '../components/uploadImage';
-import { getQuery } from '../../../utils/common';
+import { getQuery, isValidated } from '../../../utils/common';
 import { fetchData, userDeliveryAfterSale } from './actions';
 const Styles = require('./index.less');
 
@@ -72,6 +72,14 @@ class App extends React.Component<IProps, IState> {
 
   submit = () => {
     const { afterSaleId, express, serialNo, images } = this.state;
+    const conditions = [
+      { condition: !!express, message: '请选择物流公司' },
+      { condition: /^[0-9A-Za-z]{6, 40}$/.test(serialNo), message: '物流单号不正确' },
+    ];
+    if (!isValidated(conditions)) {
+      return;
+    }
+
     userDeliveryAfterSale(afterSaleId, express, serialNo, images).then((res: any) => {
       Message.success('成功');
     }).catch(Message.error);
@@ -79,6 +87,8 @@ class App extends React.Component<IProps, IState> {
 
   render() {
     const { review, expressOptions, express, serialNo, images } = this.state;
+
+    const disabled = !(express && serialNo && (images.length > 0));
     return (
       <div>
         <Title title="填写物流单号" goBack />
@@ -129,7 +139,9 @@ class App extends React.Component<IProps, IState> {
           />
         </Panel>
 
-        {/* <Submit onClick={this.submit} /> */}
+        <Submit>
+          <Button type={'danger'} onClick={this.submit} disabled={disabled}>提交</Button>
+        </Submit>
       </div>
     );
   }
