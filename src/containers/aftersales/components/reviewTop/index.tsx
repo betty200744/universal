@@ -4,19 +4,20 @@ const Styles = require('./index.less');
 
 interface IProps {
   review: SimpleReview;
+  noSpec?: boolean;
 }
 
 interface IState { }
 
 class App extends React.Component<IProps, IState> {
   render() {
-    const { review } = this.props;
+    const { review, noSpec } = this.props;
     return (
       <div className={Styles.top}>
         <div className={Styles.topImg}><Image src={review.img} /></div>
         <div className={Styles.topText}>
           <div>{review.name}</div>
-          <div>{review.spec} {review.amount ? `x ${review.amount}` : ''}</div>
+          <div>{!noSpec ? review.spec : ''} {review.amount ? `x ${review.amount}` : ''}</div>
         </div>
       </div>
     );

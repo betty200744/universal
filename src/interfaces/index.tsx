@@ -20,3 +20,16 @@ interface SimpleReview {
   spec: string;
   amount: number;
 }
+
+interface UserInfo {
+  contact: string;
+  address: string;
+  comment: string;
+}
+
+interface LogisticInfo {
+  company: string;
+  serial_no: string;
+  sendBackFee?: number;
+  images?: Array<string>;
+}

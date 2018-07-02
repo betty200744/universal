@@ -1,12 +1,48 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 2.4rem;
+  background-color: #fff;
+
+  .topLeft {
+    .topState {
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: #222222;
+      margin-bottom: 0.8rem;
+    }
+    .topTime {
+      display: flex;
+      font-size: 1.2rem;
+      color: #ababab;
+      img {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right: 0.4rem;
+      }
+    }
+  }
+
+  .topRight {
+    img {
+      height: 14rem;
+      width: 14rem;
+    }
+  }
+}
+
 .prograss {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #fff;
+  padding-bottom: 1.6rem;
   // padding: 0 2.6rem;
   .prograssItem {
     text-align: center;
     flex: 1;
+    max-width: 9.4rem;
     position: relative;
     img {
       width: 3.1rem;
@@ -45,6 +81,46 @@
   }
 }
 
+.mainApply {
+  .mainApplyTop {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #222222;
+    padding: 1.6rem 0;
+    border-bottom: solid 1px #e6e6e6;
+  }
+
+}
+.mainApplyBtm {
+  padding: 1.6rem 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ababab;
+  >div {
+    position: relative;
+    padding-left: 1.2rem;
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 100%;
+      background-color: #ff3c50;
+      left: 0;
+      top: 0.6rem;
+    }
+    &:first-child {
+      margin-bottom: 1.6rem;
+    }
+  }
+}
+
+.mainWaitDelivered {
+
+}
+
+
 .info {
   > div:nth-child(2) {
     padding: 1.6rem 0;
@@ -68,5 +144,38 @@
         margin-bottom: 0;
       }
     }
+  }
+}
+.panel {
+  .panelLabel {
+    padding: 1.6rem 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #222222;
+  }
+  .panelLabel1 {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #616161;
+    > div {
+      padding-bottom: 1.6rem;
+    }
+  }
+  .panelSubLabel {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #616161;
+    padding-bottom: 1.6rem;
+    border-bottom: solid 1px #e6e6e6;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }

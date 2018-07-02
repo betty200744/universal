@@ -2045,6 +2045,10 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
+dayjs@^1.7.0:
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/dayjs/download/dayjs-1.7.0.tgz#8a1d008928dc72da55c436ace13be2545ce2b2ea"
+
 debounce@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/debounce/-/debounce-1.1.0.tgz#6a1a4ee2a9dc4b7c24bb012558dbcdb05b37f408"

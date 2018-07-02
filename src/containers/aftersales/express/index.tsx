@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { post } from '@util/srequest';
-import { Title, Image, Message } from '../../../components';
+import { Title, Message } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import Submit from '../components/submit';
@@ -45,11 +44,22 @@ class App extends React.Component<IProps, IState> {
     };
   }
 
+  componentDidMount() {
+    this.fetchData();
+  }
+
   fetchData = () => {
-    const { orderId, productId } = this.state;
-    fetchData(orderId, productId).then((res: any) => {
+    const { afterSaleId } = this.state;
+    fetchData(afterSaleId).then((res: any) => {
+      const detail = res.afterSaleDetail;
       this.setState({
-        review: res.getApplySkuInfo,
+        review: {
+          _id: detail.productInfo.product.id,
+          img: detail.productInfo.product.img,
+          name: detail.review.name,
+          spec: detail.productInfo.spec,
+          amount: 0,
+        },
         expressOptions: res.afterSaleUserLogisticsCompany
           .map((e: string) => ({ value: e, label: e })),
       });
@@ -71,23 +81,26 @@ class App extends React.Component<IProps, IState> {
 
         <ReviewTop review={review} />
 
-        <Panel>
-          <div>物流公司</div>
-          <div>
+        <Panel className={Styles.panel}>
+          <div className={Styles.panelLabel}>物流公司</div>
+          <div className={Styles.panelInput}>
             <label htmlFor="select"></label>
             <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               this.setState({ express: e.target.value });
             }}>
+              <option value="无">无</option>)
               {expressOptions.map((e: Option) =>
                 <option key={e.value} value={express}>{e.label}</option>)}
             </select>
           </div>
         </Panel>
 
-        <Panel>
-          <div>物流单号</div>
+        <Panel className={Styles.panel}>
+          <div className={Styles.panelLabel}>物流单号</div>
           <input
+            className={Styles.panelInput}
             value={serialNo}
+            placeholder="请填写物流单号"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               this.setState({ serialNo: e.target.value });
             }}
@@ -100,9 +113,10 @@ class App extends React.Component<IProps, IState> {
           </div>
 
           <Uploader
-            onDelete={(i) => this.setState((prevState) => ({
-              images: prevState.images.splice(i - 1, 1),
-            }))}
+            onDelete={(i) => {
+              images.splice(i, 1);
+              this.setState({ images: [...images] });
+            }}
             onChange={(e: Array<string>) => this.setState((prevState) => ({
               images: [...prevState.images, ...e],
             }))}

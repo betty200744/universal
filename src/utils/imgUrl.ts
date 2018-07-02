@@ -13,6 +13,12 @@ export const buyerIcon = `${aftersales}buyer.svg`;
 export const merchantIcon = `${aftersales}merchant.svg`;
 export const systemIcon = `${aftersales}system.svg`;
 
+export const stateApply = `${aftersales}state-apply.svg`;
+export const stateWait = `${aftersales}state-wait.svg`;
+export const stateComplete = `${aftersales}state-complete.png`;
+export const stateFail = `${aftersales}state-fail.svg`;
+export const stateTime = `${aftersales}time.svg`;
+
 
 
 // export const buyArrow = `${cdn}distribute/buy-arrow-1@3x.png`;

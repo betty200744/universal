@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Prograss from './progress';
 import Info from './aftersalesInfo';
+import TopState from './topState';
 import Panel from '../components/panel';
 import { Message, Image, Title } from '../../../components';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getDetail } from './actions';
 import { goToAftersalesPage } from '../../../utils/common';
+import MainContent from './mainContant';
 const Styles = require('./index.less');
 const pick = require('lodash/pick');
 
@@ -22,7 +24,11 @@ interface IState {
   create: string;
   state: string;
   review: SimpleReview;
-  productCost: number;
+  totalPrice: number;
+  expireDate: string;
+  cancelDate: string;
+  sellerInfo: UserInfo;
+  logistics: LogisticInfo;
 }
 
 class App extends React.Component<IProps, IState> {
@@ -35,8 +41,19 @@ class App extends React.Component<IProps, IState> {
       phone: '',
       serialNo: '',
       create: '',
-      state: '',
-      productCost: 0,
+      state: 'apply',
+      totalPrice: 0,
+      expireDate: '',
+      cancelDate: '',
+      sellerInfo: {
+        contact: '',
+        address: '',
+        comment: '',
+      },
+      logistics: {
+        company: '',
+        serial_no: '',
+      },
       review: {
         _id: '',
         img: '',
@@ -55,7 +72,11 @@ class App extends React.Component<IProps, IState> {
     const { id } = this.state;
     getDetail(id).then((res: any) => {
       const data  = res.afterSaleDetail;
-      const pickItem = ['serialNo', 'type', 'state', 'expireDate', 'create', 'revokedTimes'];
+      const pickItem = [
+        'serialNo', 'type', 'state', 'expireDate', 'sellerInfo',
+        'create', 'revokedTimes', 'expireDate', 'cancelDate',
+        'logistics',
+      ];
       this.setState({
         ...pick(data, pickItem),
         ...data.applyInfo,
@@ -66,7 +87,7 @@ class App extends React.Component<IProps, IState> {
           amount: data.productInfo.amount,
           name: data.review.name,
         },
-        productCost: data.productInfo.productCost,
+        totalPrice: data.totalPrice,
       });
     }).catch(Message.error);
 
@@ -74,11 +95,32 @@ class App extends React.Component<IProps, IState> {
 
   render() {
     console.log(this.props.match.params.id);
-    const { review, type, reason, phone, create, serialNo, productCost, id } = this.state;
+    const {
+      review, type, reason, phone, create, serialNo,
+      totalPrice, id, state, expireDate, cancelDate,
+      sellerInfo, logistics,
+    } = this.state;
+    const reimburse = type === 'reimburse';
     return (
       <div>
         <Title title="售后详情" goBack />
-        <Prograss />
+
+        <TopState
+          state={state}
+          expireDate={expireDate}
+          cancelDate={cancelDate}
+        />
+
+        <Prograss state={state} reimburse={reimburse} />
+
+        <MainContent
+          state={state}
+          type={type}
+          sellerInfo={sellerInfo}
+          logistics={logistics}
+          revoke={!!cancelDate}
+          id={id}
+        />
 
         <Panel
           className={Styles.record}
@@ -94,7 +136,8 @@ class App extends React.Component<IProps, IState> {
           phone={phone}
           create={create}
           serialNo={serialNo}
-          productCost={productCost}
+          totalPrice={totalPrice}
+          noSpec={reimburse}
         />
       </div>
     );

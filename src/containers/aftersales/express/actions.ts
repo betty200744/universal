@@ -1,30 +1,30 @@
 import { post } from '@util/srequest';
 import { apiUrl } from '../../../utils/constant';
 
-export const fetchData = (orderId: string, productId: string) => {
-  const query = `query($orderId: String, $productId: String){
-      getApplySkuInfo(orderId: $orderId, productId: $productId) {
-        id
+export const fetchData = (afterSaleId: string) => {
+  const query = `query($afterSaleId: ID!){
+    afterSaleDetail(afterSaleId: $afterSaleId) {
+      review {
         name
-        img
+      }
+      productInfo {
+        product {
+          id
+          img
+        }
         spec
       }
-      afterSaleUserLogisticsCompany
-    }`;
-  const variables = { orderId, productId };
+    }
+    afterSaleUserLogisticsCompany
+  }`;
+  const variables = { afterSaleId };
   return post(apiUrl, { query, variables });
 };
 
 export const userDeliveryAfterSale = (afterSaleId: string, company: string, serial_no: string, images: Array<string>) => {
-  const query = `query($afterSaleId: ID!, $logistics: AfterSaleLogistics){
-    userDeliveryAfterSale(afterSaleId: $afterSaleId, logistics: $logistics) {
-        id
-        name
-        img
-        spec
-      }
-      afterSaleUserLogisticsCompany
-    }`;
+  const query = `mutation($afterSaleId: ID!, $logistics: AfterSaleLogistics){
+    userDeliveryAfterSale(afterSaleId: $afterSaleId, logistics: $logistics)
+  }`;
   const variables = { afterSaleId, logistics: { company, serial_no, images }};
   return post(apiUrl, { query, variables });
 };

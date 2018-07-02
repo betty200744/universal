@@ -10,14 +10,15 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class Panel extends React.Component<IProps, IState> {
   render() {
+    const { className, onClick } = this.props;
     return (
-      <div className={classnames(Styles.panel, this.props.className)}>
+      <div className={classnames(Styles.panel, className)} onClick={onClick}>
         {this.props.children}
       </div>
     );
   }
 }
 
-export default App;
+export default Panel;

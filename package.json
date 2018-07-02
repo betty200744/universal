@@ -39,6 +39,7 @@
     "@util/useragent": "^1.1.0",
     "classnames": "^2.2.5",
     "copy-to-clipboard": "^3.0.8",
+    "dayjs": "^1.7.0",
     "debounce": "^1.1.0",
     "ejs": "^2.5.7",
     "eslint-plugin-jsdoc": "^3.6.2",

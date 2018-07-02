@@ -11,6 +11,7 @@ export const getDetail = (afterSaleId: string) => {
       expireDate
       create
       revokedTimes
+      totalPrice
       applyInfo {
         resaon
         phone
@@ -22,10 +23,30 @@ export const getDetail = (afterSaleId: string) => {
         }
         spec
         amount
-        productCost
       }
       review {
         name
+      }
+      sellerInfo {
+        contact
+        address
+        comment
+      }
+      logistics {
+        company
+        serial_no
+        sendBackFee
+        images
+      }
+      sellerLogistics {
+        company
+        serial_no
+      }
+      cancelDate
+      checkDate
+      rejectInfo {
+        reason
+        description
       }
     }
   }`;

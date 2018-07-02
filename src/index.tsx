@@ -25,7 +25,7 @@ const otherRoutes = [
 ];
 
 const routes = [
-  ...afterSalesRoutes.map(e => ({ ...e, path: `/aftersales${e.path}` })),
+  ...afterSalesRoutes.map(e => ({ ...e, path: `/universal/aftersales${e.path}` })),
   ...otherRoutes.map(e => ({ ...e, path: `/other${e.path}` })),
 ];
 

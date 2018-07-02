@@ -53,10 +53,24 @@ export const convertTimeString = (str: any, type = 'long', slicer = '-'): string
   return result;
 };
 
+export const getRemainTime = (time: string): string => {
+  const date = (Number(new Date(time)) - Number(new Date())) / 1000; //get s
+  const minute = 60;
+  const hour = 60 * minute;
+  const day = 24 * hour;
+
+  const d = Math.floor(date / day);
+  const h = Math.floor(date / hour) - 24 * d;
+  const m = Math.floor(date / minute) - h * 60 - d * 24 * 60;
+
+  return `还剩 ${d} 天 ${h} 小时 ${m} 分`;
+};
+
 export const goToPage = (url: string) => {
   if (isFireball()) {
     gotoPage(url);
   } else {
+    console.log(history);
     history.push(url);
   }
 };

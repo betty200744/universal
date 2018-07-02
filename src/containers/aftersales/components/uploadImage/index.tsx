@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Uploader from '../uploader';
 import { Image } from '../../../../components';
-import { grayArrow, closeIcon } from '../../../../utils/imgUrl';
+import { closeIcon } from '../../../../utils/imgUrl';
 const Styles = require('./index.less');
 
 interface IProps {
@@ -20,7 +20,7 @@ class App extends React.Component<IProps, IState> {
       <div>
         <div className={Styles.photoUpload}>
           {imgs.map((e: string, i: number) => (<div key={e} className={Styles.img}>
-            <Image className={Styles.imgMain} src={grayArrow} />
+            <Image className={Styles.imgMain} src={e} />
             <Image className={Styles.close} src={closeIcon} onClick={() => onDelete(i)} />
           </div>))}
 
