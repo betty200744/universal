@@ -129,7 +129,7 @@ class App extends React.Component<IProps, IState> {
           />
         </Panel>
 
-        <Submit onClick={this.submit} />
+        {/* <Submit onClick={this.submit} /> */}
       </div>
     );
   }

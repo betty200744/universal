@@ -2,11 +2,11 @@ import * as React from 'react';
 const Styles = require('./index.less');
 
 interface IProps {
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
   type: string;
   disabled?: boolean;
-  onClick(e: React.MouseEvent<HTMLDivElement>): void;
+  onClick?(e: React.MouseEvent<HTMLDivElement>): void;
 }
 
 interface IState {
@@ -36,7 +36,7 @@ class Button extends React.Component<IProps, IState> {
 
 
    getStyle = () => {
-     const { height, width } = this.props;
+     const { height = 35.5, width = 3.4 } = this.props;
      const calcStyle = {
        width: `${width}rem`,
        height: `${height}rem`,

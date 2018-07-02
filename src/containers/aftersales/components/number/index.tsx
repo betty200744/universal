@@ -6,6 +6,7 @@ const Styles = require('./index.less');
 interface IProps {
   value: number;
   maxValue: number;
+  minValue?: number;
   onChange(value: number): void;
 }
 
@@ -20,17 +21,17 @@ class App extends React.Component<IProps, IState> {
     }
   }
   onDecrease = () => {
-    const { value, onChange } = this.props;
-    if (value > 0) {
+    const { value, onChange, minValue = 1 } = this.props;
+    if (value > minValue) {
       onChange(value - 1);
     }
   }
   render() {
-    const { value, maxValue } = this.props;
+    const { value, maxValue, minValue = 1 } = this.props;
     return (
       <div className={Styles.container}>
         <div className={Styles.containerLeft} onClick={this.onDecrease}>
-          <Image src={value > 0 ? blackArrow : grayArrow} />
+          <Image src={value > minValue ? blackArrow : grayArrow} />
         </div>
         <div className={Styles.containerMiddle}>{value}</div>
         <div className={Styles.containerRight} onClick={this.onIncrease}>

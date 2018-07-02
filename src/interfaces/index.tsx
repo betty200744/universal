@@ -33,3 +33,8 @@ interface LogisticInfo {
   sendBackFee?: number;
   images?: Array<string>;
 }
+
+interface ConditionFace {
+  condition: boolean;
+  message: string;
+}

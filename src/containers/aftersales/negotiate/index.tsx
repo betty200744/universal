@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { post } from '@util/srequest';
-import { Message,  Image } from '../../../components';
+import { Button, Message, Image } from '../../../components';
 import Submit from '../components/submit';
 import { apiUrl } from '../../../utils/constant';
 import { convertTimeString, getSupport } from '../../../utils/common';
@@ -103,7 +103,9 @@ class App extends React.Component<IProps, IState> {
       <div>
         {this.state.list.map((e: Item) => (<Item key={e.id} item={e} />))}
 
-        <Submit value="联系客服" onClick={this.click} />
+        <Submit>
+          <Button type="danger-light" onClick={this.click}>联系客服</Button>
+        </Submit>
       </div>
     );
   }

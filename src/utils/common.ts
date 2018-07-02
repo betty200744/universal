@@ -1,10 +1,22 @@
 import { isFireball } from '@util/useragent';
+import { Message } from '../components';
 import {
   goBack as nativeGoBack,
   gotoPage as nativeGoToPage,
   getSupport as nativeGetSupport,
 } from './jsbridge';
 import history from './history';
+
+
+export const validateAndTips = (condition: boolean, message: string) => {
+  if (!condition) {
+    Message.error(message);
+  }
+  return condition;
+};
+
+export const isValidated = (conditions: Array<ConditionFace>) =>
+  conditions.every(item => validateAndTips(item.condition, item.message));
 
 /**
  * 数字转换成两位小数的金额浮点数,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Title, Image, Message } from '../../../components';
+import { Button, Title, Image, Message } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import Panel from '../components/panel';
 import NumberInput from '../components/number';
@@ -7,7 +7,7 @@ import Picker from '../components/picker';
 import Uploader from '../components/uploadImage';
 import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
-import { getQuery, goToAftersalesPage, numberToMoney } from '../../../utils/common';
+import { getQuery, goToAftersalesPage, numberToMoney, isValidated } from '../../../utils/common';
 import { getRefundPrice, fetchData, createAfterSale } from './actions';
 const Styles = require('./index.less');
 
@@ -60,7 +60,7 @@ class App extends React.Component<IProps, IState> {
       type: getQuery('type'),
       reasonOptions: [],
       reason: {
-        value: '',
+        value: '-1',
         label: '',
       },
       totalPrice: 0,
@@ -111,7 +111,26 @@ class App extends React.Component<IProps, IState> {
   }
 
   submit = () => {
-    const { orderId, productId, amount, reason: { value }, type, price, description, images } = this.state;
+    const { orderId, productId, amount, reason: { value }, type, price, description, images, phone } = this.state;
+
+    const conditions = [
+      { condition: Number(value) >= 0, message: '请选择申请原因' },
+      { condition: /^1[0-9]{10}$/.test(phone), message: '手机号码不正确' },
+      { condition: images.length > 0, message: '请上传图片凭证' },
+    ];
+    const refundConditions = [
+      { condition: Number(price) > 0, message: '退款金额不正确' },
+      ...conditions,
+    ];
+    if (type === 'replacement') {
+      if (!isValidated(conditions)) {
+        return;
+      }
+    } else {
+      if (!isValidated(refundConditions)) {
+        return;
+      }
+    }
     createAfterSale(orderId, type, price, productId, amount, value, description, images).then((res: any) => {
       goToAftersalesPage(`/detail/${res.createAfterSale}`);
     }).catch(Message.error);
@@ -122,6 +141,9 @@ class App extends React.Component<IProps, IState> {
       amount, showOptions, review, reasonOptions, description, type,
       reason, totalPrice, expectRefundTransferFee, phone, price, images,
     } = this.state;
+    const replacementDisabled = reason.value && amount && description && phone && images.length;
+    const notReplacementDisabled = replacementDisabled && price;
+    const disabled = (type === 'replacement' && !replacementDisabled) || (type !== 'replacement' && !notReplacementDisabled);
     return (
       <div>
         <Title title="申请售后" goBack />
@@ -230,7 +252,9 @@ class App extends React.Component<IProps, IState> {
           </Panel>
         </div>
 
-        <Submit onClick={this.submit} />
+        <Submit>
+          <Button type={'danger'} onClick={this.submit} disabled={disabled}>提交</Button>
+        </Submit>
 
         <Picker
           show={showOptions}
