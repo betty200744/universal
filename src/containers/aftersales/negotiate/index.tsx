@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { post } from '@util/srequest';
 import { Message,  Image } from '../../../components';
+import Submit from '../components/submit';
 import { apiUrl } from '../../../utils/constant';
-import { convertTimeString } from '../../../utils/common';
+import { convertTimeString, getSupport } from '../../../utils/common';
 import { buyerIcon, systemIcon, merchantIcon } from '../../../utils/imgUrl';
 const Styles = require('./index.less');
 
@@ -93,10 +94,16 @@ class App extends React.Component<IProps, IState> {
       this.setState({ list: res.afterSaleLogs });
     }).catch(Message.error);
   }
+
+  click = () => {
+    getSupport();
+  }
   render() {
     return (
       <div>
         {this.state.list.map((e: Item) => (<Item key={e.id} item={e} />))}
+
+        <Submit onClick={this.click} disabled />
       </div>
     );
   }

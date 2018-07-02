@@ -9,7 +9,6 @@ import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getQuery, goToAftersalesPage, numberToMoney } from '../../../utils/common';
 import { getRefundPrice, fetchData, createAfterSale } from './actions';
-import { typeMap } from '../constant';
 const Styles = require('./index.less');
 
 interface IProps { }
@@ -125,14 +124,14 @@ class App extends React.Component<IProps, IState> {
     } = this.state;
     return (
       <div>
-        <Title title={typeMap[type]} goBack />
+        <Title title="申请售后" goBack />
         <ReviewTop review={review} />
 
         <div>
 
           <Panel className={Styles.reason}>
             <div className={Styles.reasonTop} onClick={() => this.setState({ showOptions: true })}>
-              <div>{reason.label}</div>
+              <div>{reason.label || '申请原因'}</div>
               <div>
                 <Image src={grayArrow} />
               </div>
@@ -153,7 +152,7 @@ class App extends React.Component<IProps, IState> {
             />
           </Panel>
 
-          <Panel className={Styles.price}>
+          {type !== 'replacement' && <Panel className={Styles.price}>
             <div>
               <div className={Styles.label}>
               退款金额
@@ -181,11 +180,11 @@ class App extends React.Component<IProps, IState> {
                 }
               }}
             />
-          </Panel>
+          </Panel>}
 
           <Panel className={Styles.note}>
             <div className={Styles.label}>
-              退货退款说明
+              说明
             </div>
             <textarea
               className={Styles.noteText}

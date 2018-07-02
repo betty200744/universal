@@ -2,16 +2,17 @@ import * as React from 'react';
 const Styles = require('./index.less');
 
 interface IProps {
+  disabled?: boolean;
   onClick(): void;
 }
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class Submit extends React.Component<IProps, IState> {
   render() {
-    const { onClick } = this.props;
+    const { onClick, disabled = false } = this.props;
     return (
-      <div onClick={onClick}>
+      <div className={disabled && Styles.disabled} onClick={!disabled && onClick}>
         <div style={{ height: '5rem' }}></div>
         <div className={Styles.submit}>
           <div>提交</div>
@@ -21,4 +22,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Submit;

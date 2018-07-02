@@ -1,5 +1,9 @@
 import { isFireball } from '@util/useragent';
-import { goBack as nativeGoBack, gotoPage } from './jsbridge';
+import {
+  goBack as nativeGoBack,
+  gotoPage as nativeGoToPage,
+  getSupport as nativeGetSupport,
+} from './jsbridge';
 import history from './history';
 
 /**
@@ -68,29 +72,31 @@ export const getRemainTime = (time: string): string => {
 
 export const goToPage = (url: string) => {
   if (isFireball()) {
-    gotoPage(url);
+    nativeGoToPage(url);
   } else {
     console.log(history);
     history.push(url);
   }
 };
 
-export const goToAftersalesPage = (url: string) => {
-  goToPage(`/universal/aftersales${url}`);
-};
-
-export const goBack = (history: any) => {
-  const type = window.location.pathname.slice(0, 6);
-  if (type === '/buyer') {
-    return history.goBack();
-  }
+export const goBack = () => {
   if (isFireball()) {
     nativeGoBack();
   } else {
-    if (history) {
-      history.goBack();
-    }
+    history.goBack();
   }
+};
+
+export const getSupport = () => {
+  if (isFireball()) {
+    nativeGetSupport();
+  } else {
+    window.location.href = 'https://huoqiukeji.qiyukf.com/client?k=74da12b1e7e9f730260909665350cb90&wp=1';
+  }
+};
+
+export const goToAftersalesPage = (url: string) => {
+  goToPage(`/universal/aftersales${url}`);
 };
 
 export const processNumberToK = (num: number) => {
