@@ -103,7 +103,7 @@ class App extends React.Component<IProps, IState> {
       <div>
         {this.state.list.map((e: Item) => (<Item key={e.id} item={e} />))}
 
-        <Submit onClick={this.click} disabled />
+        <Submit value="联系客服" onClick={this.click} />
       </div>
     );
   }

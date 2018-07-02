@@ -27,6 +27,7 @@ interface IState {
   totalPrice: number;
   expireDate: string;
   cancelDate: string;
+  checkDate: string;
   sellerInfo: UserInfo;
   logistics: LogisticInfo;
 }
@@ -45,6 +46,7 @@ class App extends React.Component<IProps, IState> {
       totalPrice: 0,
       expireDate: '',
       cancelDate: '',
+      checkDate: '',
       sellerInfo: {
         contact: '',
         address: '',
@@ -73,9 +75,10 @@ class App extends React.Component<IProps, IState> {
     getDetail(id).then((res: any) => {
       const data  = res.afterSaleDetail;
       const pickItem = [
-        'serialNo', 'type', 'state', 'expireDate', 'sellerInfo',
-        'create', 'revokedTimes', 'expireDate', 'cancelDate',
-        'logistics',
+        'serialNo', 'type', 'state', 'expireDate',
+        'create', 'revokedTimes', 'sellerInfo',
+        'logistics', 'sellerLogistics', 'rejectInfo',
+        'checkDate', 'expireDate', 'cancelDate',
       ];
       this.setState({
         ...pick(data, pickItem),
@@ -98,7 +101,7 @@ class App extends React.Component<IProps, IState> {
     const {
       review, type, reason, phone, create, serialNo,
       totalPrice, id, state, expireDate, cancelDate,
-      sellerInfo, logistics,
+      sellerInfo, logistics, checkDate,
     } = this.state;
     const reimburse = type === 'reimburse';
     return (
@@ -109,6 +112,7 @@ class App extends React.Component<IProps, IState> {
           state={state}
           expireDate={expireDate}
           cancelDate={cancelDate}
+          checkDate={checkDate}
         />
 
         <Prograss state={state} reimburse={reimburse} />
@@ -119,6 +123,7 @@ class App extends React.Component<IProps, IState> {
           sellerInfo={sellerInfo}
           logistics={logistics}
           revoke={!!cancelDate}
+          totalPrice={totalPrice}
           id={id}
         />
 

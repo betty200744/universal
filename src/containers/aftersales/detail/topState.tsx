@@ -2,20 +2,21 @@ import * as React from 'react';
 import { Image } from '../../../components';
 import { stateMap, imgMap } from './constant';
 import { stateTime } from '../../../utils/imgUrl';
-import { getRemainTime } from '../../../utils/common';
+import { getRemainTime, convertTimeString } from '../../../utils/common';
 const Styles = require('./index.less');
 
 interface IProps {
   state: string;
   expireDate: string;
   cancelDate: string;
+  checkDate: string;
 }
 
 interface IState { }
 
 class App extends React.Component<IProps, IState> {
   render() {
-    const { state, expireDate, cancelDate } = this.props;
+    const { state, expireDate, cancelDate, checkDate } = this.props;
     return (
       <div className={Styles.top}>
         <div className={Styles.topLeft}>
@@ -24,7 +25,11 @@ class App extends React.Component<IProps, IState> {
             <div>
               <Image src={stateTime} />
             </div>
-            <div>{getRemainTime(expireDate)}</div>
+            <div>{(state !== 'complete' && state !== 'fail') ?
+              getRemainTime(expireDate) :
+              `于${convertTimeString(cancelDate || checkDate)}
+             ${state === 'complete' ? '完成' : '关闭'}`}
+            </div>
           </div>
         </div>
         <div className={Styles.topRight}>
