@@ -37,6 +37,7 @@ export const createAfterSale = (
   product: string,
   amount: number,
   reasonCode: string,
+  phone: string,
   description: string,
   images: Array<string>,
 ) => {

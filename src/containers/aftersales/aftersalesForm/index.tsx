@@ -131,7 +131,7 @@ class App extends React.Component<IProps, IState> {
         return;
       }
     }
-    createAfterSale(orderId, type, price, productId, amount, value, description, images).then((res: any) => {
+    createAfterSale(orderId, type, price, productId, amount, value, phone, description, images).then((res: any) => {
       goToAftersalesPage(`/detail/${res.createAfterSale}`);
     }).catch(Message.error);
   }
