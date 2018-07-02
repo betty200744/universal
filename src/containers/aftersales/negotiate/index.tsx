@@ -31,7 +31,7 @@ const Item = ({ item }: {item:Item}) => (<div className={Styles.item}>
   <div className={Styles.itemBtm}>
     <div>{item.actionLabel}</div>
     {item.detail.map((e: {key: string, val: string}) => <div key={e.key}>{e.key}: {e.val}</div>)}
-    {item.images && item.images.length ? item.images.map((e: string) => <div key={e}><Image src={e} /></div>) : null}
+    {item.images && item.images.length ? item.images.map((e: string) => <Image style={{ marginRight: '0.8rem' }} src={e} key={e} />) : null}
   </div>
 </div>);
 
@@ -48,7 +48,11 @@ interface Item {
 }
 
 interface IProps {
-  match: any;
+  match: {
+    params: {
+      id: string;
+    };
+  };
 }
 
 interface IState {

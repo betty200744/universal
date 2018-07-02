@@ -9,7 +9,11 @@ import { fetchData, userDeliveryAfterSale } from './actions';
 const Styles = require('./index.less');
 
 interface IProps {
-  match: any;
+  match: {
+    params: {
+      id: string;
+    };
+  };
 }
 
 interface IState {
