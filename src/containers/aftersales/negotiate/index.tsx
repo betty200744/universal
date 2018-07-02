@@ -8,18 +8,14 @@ const Styles = require('./index.less');
 
 const belongMap: SimpleMap = {
   user: '用户',
-  buyer: '买手',
   system: '系统',
   merchant: '商家',
-  platform: '平台',
 };
 
 const logoMap: SimpleMap = {
   user: buyerIcon,
-  buyer: buyerIcon,
   system: systemIcon,
   merchant: merchantIcon,
-  platform: merchantIcon,
 };
 
 
