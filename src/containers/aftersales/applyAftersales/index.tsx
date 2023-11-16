@@ -41,6 +41,7 @@ interface IState {
   review: SimpleReview;
   orderId: string;
   productId: string;
+  aftersaleId: string;
 }
 
 class App extends React.Component<IProps, IState> {
@@ -56,6 +57,7 @@ class App extends React.Component<IProps, IState> {
       },
       orderId: getQuery('order'),
       productId: getQuery('product'),
+      aftersaleId: getQuery('aftersale'),
     };
   }
 
@@ -81,8 +83,12 @@ class App extends React.Component<IProps, IState> {
   }
 
   onClick = (item: ItemProps) => {
-    const { orderId, productId } = this.state;
-    goToAftersalesPage(`/form?type=${item.type}&order=${orderId}&productId=${productId}`);
+    const { orderId, productId, aftersaleId } = this.state;
+    if (aftersaleId) {
+      goToAftersalesPage(`/form?type=${item.type}&order=${orderId}&product=${productId}&aftersale=${aftersaleId}`);
+    } else {
+      goToAftersalesPage(`/form?type=${item.type}&order=${orderId}&product=${productId}`);
+    }
   }
 
   render() {

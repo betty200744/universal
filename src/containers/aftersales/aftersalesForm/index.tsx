@@ -8,7 +8,7 @@ import Uploader from '../components/uploadImage';
 import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getQuery, goToAftersalesPage, numberToMoney, isValidated } from '../../../utils/common';
-import { getRefundPrice, fetchData, createAfterSale } from './actions';
+import { getRefundPrice, fetchData, createAfterSale, fetchAftersale } from './actions';
 const Styles = require('./index.less');
 
 interface IProps { }
@@ -24,6 +24,7 @@ interface IState {
   price: string;
   orderId: string;
   productId: string;
+  aftersaleId: string;
   type: string;
   reasonOptions: Array<Option>;
   reason: Option;
@@ -57,6 +58,7 @@ class App extends React.Component<IProps, IState> {
       price: '0',
       orderId: getQuery('order'),
       productId: getQuery('product'),
+      aftersaleId: getQuery('aftersale'),
       type: getQuery('type'),
       reasonOptions: [],
       reason: {
@@ -71,8 +73,32 @@ class App extends React.Component<IProps, IState> {
     };
   }
   componentDidMount() {
-    const { orderId, productId } = this.state;
+    const { orderId, productId, aftersaleId } = this.state;
     this.fetchProduct(orderId, productId);
+    if (aftersaleId) {
+      this.fetchAftersale(aftersaleId);
+    }
+  }
+
+  fetchAftersale = (aftersaleId: string) => {
+    fetchAftersale(aftersaleId).then((res: any) => {
+      const detail = res.afterSaleDetail;
+      if (detail.type === this.state.type) {
+        this.setState({
+          reason: {
+            value: detail.applyInfo.reasonCode,
+            label: detail.applyInfo.reason,
+          },
+          phone: detail.applyInfo.phone,
+          images: detail.applyInfo.images,
+          description: detail.applyInfo.description,
+          amount: detail.productInfo.amount,
+          price: detail.totalPrice,
+        }, () => {
+          this.getRefundPrice(detail.totalPrice);
+        });
+      }
+    });
   }
 
 
@@ -103,10 +129,10 @@ class App extends React.Component<IProps, IState> {
     });
   }
 
-  getRefundPrice = () => {
+  getRefundPrice = (price: number = 0) => {
     const { orderId, productId, amount, reason: { value }} = this.state;
     getRefundPrice(orderId, productId, amount, value).then((res: any) => {
-      this.setState({ ...res.afterSaleMakeRefundSubject, price: 0 });
+      this.setState({ ...res.afterSaleMakeRefundSubject, price });
     }).catch(Message.error);
   }
 

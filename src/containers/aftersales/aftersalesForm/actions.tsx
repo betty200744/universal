@@ -30,6 +30,27 @@ export const fetchData = (orderId: string, productId: string, type: string) => {
   return post(apiUrl, { query, variables });
 };
 
+export const fetchAftersale = (afterSaleId: string) => {
+  const query = `query($afterSaleId: ID!){
+    afterSaleDetail(afterSaleId: $afterSaleId) {
+      type
+      applyInfo {
+        resaon
+        phone
+        reasonCode
+        images
+        description
+      }
+      productInfo {
+        amount
+      }
+      totalPrice
+    }
+  }`;
+  const variables = { afterSaleId };
+  return post(apiUrl, { query, variables });
+};
+
 export const createAfterSale = (
   orderId: string,
   type: string,

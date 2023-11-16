@@ -3,11 +3,12 @@ import Prograss from './progress';
 import Info from './aftersalesInfo';
 import TopState from './topState';
 import Panel from '../components/panel';
-import { Message, Image, Title } from '../../../components';
+import { Button, Message, Image, Title } from '../../../components';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getDetail } from './actions';
-import { goToAftersalesPage } from '../../../utils/common';
+import { goToAftersalesPage, getSupport } from '../../../utils/common';
 import MainContent from './mainContant';
+import Submit from '../components/submit';
 const Styles = require('./index.less');
 const pick = require('lodash/pick');
 
@@ -17,6 +18,8 @@ interface IProps {
 
 interface IState {
   id: string;
+  orderId: string;
+  productId: string;
   type: string;
   reason: string;
   phone: string;
@@ -37,6 +40,8 @@ class App extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       id: this.props.match.params.id,
+      orderId: '',
+      productId: '',
       type: '',
       reason: '',
       phone: '',
@@ -78,7 +83,7 @@ class App extends React.Component<IProps, IState> {
         'serialNo', 'type', 'state', 'expireDate',
         'create', 'revokedTimes', 'sellerInfo',
         'logistics', 'sellerLogistics', 'rejectInfo',
-        'checkDate', 'expireDate', 'cancelDate',
+        'checkDate', 'expireDate', 'cancelDate', 'orderId',
       ];
       this.setState({
         ...pick(data, pickItem),
@@ -91,13 +96,60 @@ class App extends React.Component<IProps, IState> {
           name: data.review.name,
         },
         totalPrice: data.totalPrice,
+        productId: data.productInfo.product.id,
       });
     }).catch(Message.error);
 
   }
 
+  getSupport = () => {
+    getSupport();
+  }
+
+  modifyApply = () => {
+    const { orderId, productId, id } = this.state;
+    goToAftersalesPage(`home?order=${orderId}&product=${productId}&aftersale=${id}`);
+  }
+
+  renderSubmit() {
+    const { state } = this.state;
+    switch (state) {
+    case 'apply': {
+      return (
+        <Submit className={Styles.submit}>
+          <Button type="danger-light" width={11.1} height={3.4}>撤销申请</Button>
+          <Button type="danger-light" width={11.1} height={3.4}>修改申请</Button>
+          <Button type="danger-light" width={11.1} height={3.4} onClick={this.getSupport}>联系客服</Button>
+        </Submit>
+      );
+    }
+    case 'waitDelivered': {
+      return (
+        <Submit className={Styles.submit}>
+          <Button type="danger-light" width={17.2} height={3.4} onClick={this.getSupport}>联系客服</Button>
+          <Button type="danger" width={17.2} height={3.4}>填写物流单号</Button>
+        </Submit>
+      );
+    }
+    case 'fail': {
+      return (
+        <Submit className={Styles.submit}>
+          <Button type="danger-light" width={17.2} height={3.4} onClick={this.getSupport}>联系客服</Button>
+          <Button type="danger" width={17.2} height={3.4}>重新申请</Button>
+        </Submit>
+      );
+    }
+    default: {
+      return (
+        <Submit className={Styles.submit}>
+          <Button type="danger-light" onClick={this.getSupport}>联系客服</Button>
+        </Submit>
+      );
+    }
+    }
+  }
+
   render() {
-    console.log(this.props.match.params.id);
     const {
       review, type, reason, phone, create, serialNo,
       totalPrice, id, state, expireDate, cancelDate,
@@ -144,6 +196,8 @@ class App extends React.Component<IProps, IState> {
           totalPrice={totalPrice}
           noSpec={reimburse}
         />
+
+        {this.renderSubmit()}
       </div>
     );
   }
