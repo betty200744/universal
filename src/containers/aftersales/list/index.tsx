@@ -22,29 +22,29 @@ class App extends React.Component<IProps, IState> {
     super(props);
     this.state = {
       list: [
-        {
-          id: '',
-          type: '',
-          state: '',
-          review: {
-            _id: '',
-            img: '',
-            name: '既要居家又要精致既要居家又要精...',
-            spec: '亮橙色 / US 8.5 × 1',
-            amount: 1,
-          },
-          channel: {
-            id: '',
-            name: '',
-            icon: '',
-          },
-        },
+        // {
+        //   id: '',
+        //   type: '',
+        //   state: '',
+        //   review: {
+        //     _id: '',
+        //     img: '',
+        //     name: '既要居家又要精致既要居家又要精...',
+        //     spec: '亮橙色 / US 8.5 × 1',
+        //     amount: 1,
+        //   },
+        //   channel: {
+        //     id: '',
+        //     name: '',
+        //     icon: '',
+        //   },
+        // },
       ],
     };
   }
 
   componentDidMount() {
-    // this.fetchData();
+    this.fetchData();
   }
 
   fetchData = () => {
