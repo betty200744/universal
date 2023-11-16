@@ -42,7 +42,7 @@ class App extends React.Component<IProps, IState> {
       phone: '',
       serialNo: '',
       create: '',
-      state: 'apply',
+      state: '',
       totalPrice: 0,
       expireDate: '',
       cancelDate: '',

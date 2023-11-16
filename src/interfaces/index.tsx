@@ -21,6 +21,12 @@ interface SimpleReview {
   amount: number;
 }
 
+interface SimpleChannel {
+  id: string;
+  name: string;
+  icon: string;
+}
+
 interface UserInfo {
   contact: string;
   address: string;

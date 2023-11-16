@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Image } from '../../../components';
-import { stateMap, imgMap } from './constant';
+import { imgMap } from './constant';
 import { stateTime } from '../../../utils/imgUrl';
 import { getRemainTime, convertTimeString } from '../../../utils/common';
+import { stateMap } from '../constant';
 const Styles = require('./index.less');
 
 interface IProps {
@@ -20,7 +21,7 @@ class App extends React.Component<IProps, IState> {
     return (
       <div className={Styles.top}>
         <div className={Styles.topLeft}>
-          <div className={Styles.topState}>{stateMap.find((e: Option) => e.value === state).label}</div>
+          <div className={Styles.topState}>{stateMap[state]}</div>
           <div className={Styles.topTime}>
             <div>
               <Image src={stateTime} />

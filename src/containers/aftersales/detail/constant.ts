@@ -1,6 +1,6 @@
 import { stateApply, stateWait, stateComplete, stateFail } from '../../../utils/imgUrl';
 
-export const stateMap: Array<Option> = [
+export const stateOptions: Array<Option> = [
   { value: 'apply', label: '等待审核' },
   { value: 'waitDelivered', label: '等待买家发货' },
   { value: 'waitConfirm', label: '等待商家收货' },

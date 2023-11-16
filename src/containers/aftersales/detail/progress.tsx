@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Image } from '../../../components';
 import { aftersaleDone, aftersaleUndo } from '../../../utils/imgUrl';
-import { stateMap } from './constant';
+import { stateOptions } from './constant';
 const Styles = require('./index.less');
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IState { }
 class App extends React.Component<IProps, IState> {
   render() {
     const { state, reimburse = true } = this.props;
-    const map = !reimburse ? stateMap.slice(0, 4) : [stateMap[0], stateMap[4]];
+    const map = !reimburse ? stateOptions.slice(0, 4) : [stateOptions[0], stateOptions[4]];
     return (
       <div className={Styles.prograss}>
         {map.map((e: Option, i: number) => (
