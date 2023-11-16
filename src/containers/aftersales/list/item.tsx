@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Image } from '../../../components';
+import { Image, Button } from '../../../components';
 import ReviewTop from '../components/reviewTop';
 import { typeMap, stateMap, listTypeIconMap } from '../constant';
+import { goToAftersalesPage } from '../../../utils/common';
 const Styles = require('./index.less');
 
 interface IProps {
@@ -16,7 +17,7 @@ interface IState { }
 
 class App extends React.Component<IProps, IState> {
   render() {
-    const { review, channel, type, state } = this.props;
+    const { review, channel, type, state, id } = this.props;
     return (
       <div className={Styles.item}>
         <div className={Styles.itemTop}>
@@ -33,9 +34,14 @@ class App extends React.Component<IProps, IState> {
             <Image src={listTypeIconMap[type]} />
             {typeMap[type]} <span>{stateMap[state]}</span>
           </div>
-          <div>
+          <Button
+            type="default"
+            width={8}
+            height={2.9}
+            onClick={() => goToAftersalesPage(`/detail/${id}`)}
+          >
             查看详情
-          </div>
+          </Button>
         </div>
       </div>
     );
