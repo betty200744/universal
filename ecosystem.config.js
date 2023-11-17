@@ -8,7 +8,7 @@ module.exports = {
       name: 'universal',
       script: 'server.js',
       env: {
-        PORT_SERVER: 4053,
+        PORT_SERVER: 4062,
       },
       'log-format-date': 'YYYY-MM-DD HH:MM Z',
     },

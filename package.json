@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint src --ext tsx,ts",
     "dev": "webpack-dev-server --progress --profile --colors --config webpack.config.dev.js",
-    "build-daily": "NODE_ENV=daily webpack --config webpack.config.prod.js",
-    "build-prod": "NODE_ENV=production webpack --config webpack.config.prod.js"
+    "build-daily": "NODE_ENV=daily webpack --config webpack.config.prod.js && pm2 deploy ecosystem.config.js daily --force",
+    "build-prod": "NODE_ENV=production webpack --config webpack.config.prod.js && pm2 deploy ecosystem.config.js production--force"
   },
   "dependencies": {
     "@types/classnames": "^2.2.3",
