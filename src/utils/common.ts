@@ -108,7 +108,7 @@ export const getSupport = () => {
 };
 
 export const goToAftersalesPage = (url: string) => {
-  goToPage(`/universal/aftersales${url}`);
+  goToPage(`/porygon/aftersales${url}`);
 };
 
 export const processNumberToK = (num: number) => {
