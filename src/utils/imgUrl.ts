@@ -23,6 +23,8 @@ export const listIcon1 = `${aftersales}list-icon1.svg`;
 export const listIcon2 = `${aftersales}list-icon2.svg`;
 export const listIcon3 = `${aftersales}list-icon3.svg`;
 
+export const timeout = `${aftersales}timeout.svg`;
+
 
 // export const buyArrow = `${cdn}distribute/buy-arrow-1@3x.png`;
 // export const mineOrder = `${cdn}mine-order.svg`;

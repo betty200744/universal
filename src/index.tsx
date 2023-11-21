@@ -5,6 +5,7 @@ import { Switch, Route, Router } from 'react-router-dom';
 import {
   afterSalesHome, afterSalesForm, afterSalesDetail,
   afterSalesNegotiate, afterSalesExpress, afterSalesList,
+  afterSalesTimeout,
 } from './indexChunk';
 import history from './utils/history';
 import configStore from './store';
@@ -19,6 +20,7 @@ const afterSalesRoutes = [
   { path: '/list', exact: true, component: afterSalesList },
   { path: '/negotiate/:id', exact: true, component: afterSalesNegotiate },
   { path: '/express/:id', exact: true, component: afterSalesExpress },
+  { path: '/timeout', exact: true, component: afterSalesTimeout },
 ];
 
 const otherRoutes = [

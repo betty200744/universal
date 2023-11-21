@@ -8,4 +8,5 @@ export const afterSalesDetail = Loadable({ loader: () => import('./containers/af
 export const afterSalesList = Loadable({ loader: () => import('./containers/aftersales/list'), loading });
 export const afterSalesNegotiate = Loadable({ loader: () => import('./containers/aftersales/negotiate'), loading });
 export const afterSalesExpress = Loadable({ loader: () => import('./containers/aftersales/express'), loading });
+export const afterSalesTimeout = Loadable({ loader: () => import('./containers/aftersales/timeout'), loading });
 
