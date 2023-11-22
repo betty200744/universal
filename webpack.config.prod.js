@@ -15,8 +15,8 @@ const qiniuPlugin = new QiniuPlugin({
 
 module.exports = {
   entry: {
-    bundle: ['babel-polyfill', './src/index.tsx'],
-    vendor: ['babel-polyfill', 'react', 'react-dom', 'redux', 'redux-promise', 'redux-actions', 'react-router'],
+    bundle: ['./src/index.tsx'],
+    vendor: ['react', 'react-dom', 'redux', 'redux-promise', 'redux-actions', 'react-router'],
   },
   output: {
     publicPath: `${qiniu.cdnPath}/`,
