@@ -28,8 +28,8 @@ const otherRoutes = [
 ];
 
 const routes = [
-  ...afterSalesRoutes.map(e => ({ ...e, path: `/aftersales${e.path}` })),
-  ...otherRoutes.map(e => ({ ...e, path: `/other${e.path}` })),
+  ...afterSalesRoutes.map(e => ({ ...e, path: `/porygon/aftersales${e.path}` })),
+  ...otherRoutes.map(e => ({ ...e, path: `/porygon/other${e.path}` })),
 ];
 
 console.log(routes);
@@ -41,7 +41,6 @@ const RenderRouter = () => {
       <Router history={history}>
         <div>
           <Switch>
-            <Route path="/" component={afterSalesTimeout} />
             {/* <Route path="/timeout" component={afterSalesTimeout} /> */}
             {
               routes.map(route => <Route
