@@ -41,13 +41,13 @@ const RenderRouter = (types: any) => {
       <Router history={history}>
         <div>
           <Switch>
-            <Route path="/timeout" component={afterSalesTimeout} />
-            {/* {
+            {/* <Route path="/timeout" component={afterSalesTimeout} /> */}
+            {
               routes.map(route => <Route
                 key={route.path}
                 {...route}
               />)
-            } */}
+            }
           </Switch>
         </div>
       </Router>
