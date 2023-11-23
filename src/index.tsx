@@ -1,17 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Switch, Route, Router, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, Router } from 'react-router-dom';
 import {
   afterSalesHome, afterSalesForm, afterSalesDetail,
   afterSalesNegotiate, afterSalesExpress, afterSalesList,
   afterSalesTimeout,
 } from './indexChunk';
 import history from './utils/history';
-import configStore from './store';
+// import configStore from './store';
 import './styles/reset.less';
 import './styles/font.less';
-const store = configStore();
+// const store = configStore();
 
 const afterSalesRoutes = [
   { path: '/home', exact: true, component: afterSalesHome },
@@ -37,21 +37,22 @@ console.log(routes);
 // 按需渲染路由
 const RenderRouter = (types: any) => {
   ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <div>
-          <Switch>
-            {/* <Route path="/timeout" component={afterSalesTimeout} /> */}
-            {
-              routes.map(route => <Route
-                key={route.path}
-                {...route}
-              />)
-            }
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </Provider>,
+    // <Provider store={store}>
+    <Router history={history}>
+      <div>
+        <Switch>
+          {/* <Route path="/timeout" component={afterSalesTimeout} /> */}
+          {
+            routes.map(route => <Route
+              key={route.path}
+              {...route}
+            />)
+          }
+        </Switch>
+      </div>
+    </Router>
+    // </Provider>
+    ,
     document.getElementById('example'),
   );
 };
