@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Switch, Route, Router } from 'react-router-dom';
+import { Switch, Route, Router, BrowserRouter } from 'react-router-dom';
 import {
   afterSalesHome, afterSalesForm, afterSalesDetail,
   afterSalesNegotiate, afterSalesExpress, afterSalesList,
@@ -38,7 +38,7 @@ console.log(routes);
 const RenderRouter = (types: any) => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router history={history}>
+      <BrowserRouter>
         <div>
           <Switch>
             {/* <Route path="/timeout" component={afterSalesTimeout} /> */}
@@ -50,7 +50,7 @@ const RenderRouter = (types: any) => {
             }
           </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
     </Provider>,
     document.getElementById('example'),
   );
