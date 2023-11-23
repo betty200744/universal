@@ -35,7 +35,7 @@ const routes = [
 console.log(routes);
 
 // 按需渲染路由
-const RenderRouter = (types: any) => {
+const RenderRouter = () => {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
@@ -57,4 +57,4 @@ const RenderRouter = (types: any) => {
 };
 
 
-RenderRouter(['buyer']);
+RenderRouter();
