@@ -41,7 +41,6 @@ const RenderRouter = () => {
       <Router history={history}>
         <div>
           <Switch>
-            {/* <Route path="/timeout" component={afterSalesTimeout} /> */}
             {
               routes.map(route => <Route
                 key={route.path}
