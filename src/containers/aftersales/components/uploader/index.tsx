@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Cookies from 'js-cookie';
-import * as random from 'random-js';
 import * as superagent from 'superagent';
 import { post } from '@util/srequest';
 import { Message, Image } from '../../../../components';
 import { uploadBg } from '../../../../utils/imgUrl';
 const Styles = require('./index.less');
 
-
-const r = random();
+function getRandomInt(max: number) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 interface IProps {
   maxNumber: number;
@@ -18,6 +18,10 @@ interface IProps {
 interface IState { }
 
 class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+    this.state = {};
+  }
   getToken = () => {
     return new Promise((resolve, reject) => {
       const token = Cookies.get('qiniuToken');
@@ -40,7 +44,8 @@ class App extends React.Component<IProps, IState> {
     const queue = Array.from(files).map((file: File) => {
       const formData = new FormData();
 
-      const name = r.hex(20);
+      // 随机数
+      const name = Math.random() * 10000000000000000 * getRandomInt(10);
       const extendName = file.name.slice(file.name.lastIndexOf('.'));
       const key = `archive/image/${name}_${extendName}`;
       formData.append('key', key);
