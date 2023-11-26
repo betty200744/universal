@@ -2,12 +2,12 @@ import * as React from 'react';
 import Cookies from 'js-cookie';
 import * as superagent from 'superagent';
 import { post } from '@util/srequest';
-import { Message, Image } from '../../../../components';
+import { Message, Image as UIImage } from '../../../../components';
 import { uploadBg } from '../../../../utils/imgUrl';
 const Styles = require('./index.less');
 
 function getRandomInt(max: number) {
-  return Math.floor(Math.random() * Math.floor(max));
+  return Math.floor(Math.random() * Math.floor(max)) + 1;
 }
 
 interface IProps {
@@ -48,19 +48,25 @@ class App extends React.Component<IProps, IState> {
       const name = Math.random() * 10000000000000000 * getRandomInt(10);
       const extendName = file.name.slice(file.name.lastIndexOf('.'));
       const key = `archive/image/${name}_${extendName}`;
+      console.log(file);
       formData.append('key', key);
       formData.append('file', file);
       formData.append('token', token);
 
       return new Promise<string>((resolve, reject) => {
-        superagent.post('//upload.qiniu.com').send(formData).end((err, res) => {
-          const { body } = res;
-          if (body && body.key) {
-            resolve(`http://cdn.image.huoqiuapp.com/${body.key}`);
-          } else {
-            reject(`上传失败${err}`);
-          }
-        });
+        const _URL = window.URL || window.webkitURL;
+        const img = new Image();
+        img.onload = () => {
+          superagent.post('//upload.qiniu.com').send(formData).end((err, res) => {
+            const { body } = res;
+            if (body && body.key) {
+              resolve(`http://cdn.image.huoqiuapp.com/${body.key}`);
+            } else {
+              reject(`上传失败${err}`);
+            }
+          });
+        };
+        img.src = _URL.createObjectURL(file);
       });
     });
 
@@ -81,7 +87,7 @@ class App extends React.Component<IProps, IState> {
     return (
       <div className={Styles.uploader}>
         <label htmlFor="file">
-          <Image src={uploadBg} />
+          <UIImage src={uploadBg} />
           <div>最多 {maxNumber} 张</div>
         </label>
         <input
