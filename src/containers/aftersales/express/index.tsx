@@ -90,6 +90,7 @@ class App extends React.Component<IProps, IState> {
     const { review, expressOptions, express, serialNo, images } = this.state;
 
     const disabled = !(express && serialNo && (images.length > 0));
+    console.log(express, serialNo, images.length);
     return (
       <div>
         <Title title="填写物流单号" goBack />
@@ -100,12 +101,15 @@ class App extends React.Component<IProps, IState> {
           <div className={Styles.panelLabel}>物流公司</div>
           <div className={Styles.panelInput}>
             <label htmlFor="select"></label>
-            <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-              this.setState({ express: e.target.value });
-            }}>
+            <select
+              value={express}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                console.log(e.target);
+                this.setState({ express: e.target.value });
+              }}>
               <option value="无">无</option>)
               {expressOptions.map((e: Option) =>
-                <option key={e.value} value={express}>{e.label}</option>)}
+                <option key={e.value} value={e.value}>{e.label}</option>)}
             </select>
           </div>
         </Panel>
