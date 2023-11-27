@@ -111,6 +111,11 @@ class App extends React.Component<IProps, IState> {
     goToAftersalesPage(`home?order=${orderId}&product=${productId}&aftersale=${id}`);
   }
 
+  gotoExpress = () => {
+    const { id } = this.state;
+    goToAftersalesPage(`/express/${id}`);
+  }
+
   renderSubmit() {
     const { state } = this.state;
     switch (state) {
@@ -127,7 +132,7 @@ class App extends React.Component<IProps, IState> {
       return (
         <Submit className={Styles.submit}>
           <Button type="danger-light" width={17.2} height={3.4} onClick={this.getSupport}>联系客服</Button>
-          <Button type="danger" width={17.2} height={3.4}>填写物流单号</Button>
+          <Button type="danger" width={17.2} height={3.4} onClick={this.gotoExpress}>填写物流单号</Button>
         </Submit>
       );
     }

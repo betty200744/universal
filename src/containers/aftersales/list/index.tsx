@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Item from './item';
 import { fetchData } from './actions';
-import { Message } from '../../../components';
+import { Message, Title } from '../../../components';
 
 interface IProps { }
 
@@ -21,25 +21,7 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      list: [
-        // {
-        //   id: '',
-        //   type: '',
-        //   state: '',
-        //   review: {
-        //     _id: '',
-        //     img: '',
-        //     name: '既要居家又要精致既要居家又要精...',
-        //     spec: '亮橙色 / US 8.5 × 1',
-        //     amount: 1,
-        //   },
-        //   channel: {
-        //     id: '',
-        //     name: '',
-        //     icon: '',
-        //   },
-        // },
-      ],
+      list: [],
     };
   }
 
@@ -74,6 +56,7 @@ class App extends React.Component<IProps, IState> {
     const { list } = this.state;
     return (
       <div>
+        <Title title="我的售后" goBack />
         {list.map((e: ItemFace) => (<Item
           key={e.id}
           review={e.review}

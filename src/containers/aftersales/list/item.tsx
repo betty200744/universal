@@ -32,7 +32,7 @@ class App extends React.Component<IProps, IState> {
         <div className={Styles.itemBtm}>
           <div className={Styles.itemBtmText}>
             <Image src={listTypeIconMap[type]} />
-            {typeMap[type]} <span>{stateMap[state]}</span>
+            {typeMap[type]}<span>{stateMap[state]}</span>
           </div>
           <Button
             type="default"
