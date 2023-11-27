@@ -72,9 +72,10 @@ class App extends React.Component<IProps, IState> {
 
   submit = () => {
     const { afterSaleId, express, serialNo, images } = this.state;
+
     const conditions = [
       { condition: !!express, message: '请选择物流公司' },
-      { condition: /^[0-9A-Za-z]{6, 40}$/.test(serialNo), message: '物流单号不正确' },
+      { condition: /^[A-Za-z0-9]+$/.test(serialNo) && serialNo.length >= 6, message: '物流单号不正确' },
     ];
     if (!isValidated(conditions)) {
       return;
