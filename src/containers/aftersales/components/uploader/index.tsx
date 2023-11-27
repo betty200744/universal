@@ -43,20 +43,20 @@ class App extends React.Component<IProps, IState> {
     const { onChange } = this.props;
     const queue = Array.from(files).map((file: File) => {
       const formData = new FormData();
-
-      // 随机数
-      const name = Math.random() * 10000000000000000 * getRandomInt(10);
-      const extendName = file.name.slice(file.name.lastIndexOf('.'));
-      const key = `archive/image/${name}_${extendName}`;
-      console.log(file);
-      formData.append('key', key);
-      formData.append('file', file);
-      formData.append('token', token);
-
       return new Promise<string>((resolve, reject) => {
         const _URL = window.URL || window.webkitURL;
         const img = new Image();
+
         img.onload = () => {
+          // 随机数
+          const name = Math.random() * 10000000000000000 * getRandomInt(10);
+          const extendName = file.name.slice(file.name.lastIndexOf('.'));
+          const { width, height } = img;
+          const key = `archive/image/${name}_${width}_${height}${extendName}`;
+          console.log(file);
+          formData.append('key', key);
+          formData.append('file', file);
+          formData.append('token', token);
           superagent.post('//upload.qiniu.com').send(formData).end((err, res) => {
             const { body } = res;
             if (body && body.key) {
