@@ -2,6 +2,7 @@ import * as React from 'react';
 import Item from './item';
 import { fetchData } from './actions';
 import { Message, Title } from '../../../components';
+import { pageListenGoBack } from '../../../utils/common';
 
 interface IProps { }
 
@@ -27,6 +28,9 @@ class App extends React.Component<IProps, IState> {
 
   componentDidMount() {
     this.fetchData();
+    pageListenGoBack(() => {
+      this.fetchData();
+    });
   }
 
   fetchData = () => {

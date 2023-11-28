@@ -4,6 +4,7 @@ import {
   goBack as nativeGoBack,
   gotoPage as nativeGoToPage,
   getSupport as nativeGetSupport,
+  listenGoBack,
 } from './jsbridge';
 import history from './history';
 
@@ -98,6 +99,13 @@ export const goBack = () => {
     history.goBack();
   }
 };
+
+export const pageListenGoBack = (cb: () => void) => {
+  if (isFireball()) {
+    listenGoBack(cb);
+  }
+};
+
 
 export const getSupport = () => {
   if (isFireball()) {

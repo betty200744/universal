@@ -6,7 +6,7 @@ import Panel from '../components/panel';
 import { Button, Message, Image, Title } from '../../../components';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getDetail } from './actions';
-import { goToAftersalesPage, getSupport } from '../../../utils/common';
+import { goToAftersalesPage, getSupport, pageListenGoBack } from '../../../utils/common';
 import MainContent from './mainContant';
 import Submit from '../components/submit';
 const Styles = require('./index.less');
@@ -73,6 +73,9 @@ class App extends React.Component<IProps, IState> {
 
   componentDidMount() {
     this.fetchDetail();
+    pageListenGoBack(() => {
+      this.fetchDetail();
+    });
   }
 
   fetchDetail = () => {
