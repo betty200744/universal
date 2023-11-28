@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Switch, Route, Router } from 'react-router-dom';
+import { isFireball } from '@util/useragent';
+import { jsBridgeReady } from '@util/jsbridge';
 import {
   afterSalesHome, afterSalesForm, afterSalesDetail,
   afterSalesNegotiate, afterSalesExpress, afterSalesList,
@@ -55,5 +57,10 @@ const RenderRouter = () => {
   );
 };
 
-
-RenderRouter();
+if (isFireball()) {
+  jsBridgeReady().then(() => {
+    RenderRouter();
+  });
+} else {
+  RenderRouter();
+}
