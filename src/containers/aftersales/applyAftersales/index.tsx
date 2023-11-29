@@ -69,7 +69,6 @@ class App extends React.Component<IProps, IState> {
   fetchProduct = (orderId: string, productId: string) => {
     const query = `query($orderId: String, $productId: String){
       getApplySkuInfo(orderId: $orderId, productId: $productId) {
-        _id
         name
         img
         spec
