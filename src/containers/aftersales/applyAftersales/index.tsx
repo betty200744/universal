@@ -77,7 +77,7 @@ class App extends React.Component<IProps, IState> {
     }`;
     const variables = { orderId, productId };
     post(apiUrl, { query, variables }).then((res: any) => {
-      this.setState({ review: res.getReview });
+      this.setState({ review: res.getApplySkuInfo });
     }).catch(Message.error);
   }
 
