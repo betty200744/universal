@@ -53,7 +53,7 @@ class App extends React.Component<IProps, IState> {
         spec: '',
         amount: 0,
       },
-      amount: 0,
+      amount: 1,
       showOptions: false,
       price: '0',
       orderId: getQuery('order'),
@@ -111,7 +111,7 @@ class App extends React.Component<IProps, IState> {
       this.setState({
         review: res.getApplySkuInfo,
         reasonOptions: options,
-        reason: options[0],
+        // reason: options[0],
       });
     }).catch(Message.error);
   }
@@ -184,9 +184,9 @@ class App extends React.Component<IProps, IState> {
                 <Image src={grayArrow} />
               </div>
             </div>
-            <div className={Styles.reasonBtm}>
+            {reason.label && <div className={Styles.reasonBtm}>
               {Number(reason.value) < 3 ? reasonText[0] : reasonText[1]}
-            </div>
+            </div>}
           </Panel>
 
           <Panel className={Styles.amount}>
