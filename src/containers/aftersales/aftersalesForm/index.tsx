@@ -130,8 +130,8 @@ class App extends React.Component<IProps, IState> {
   }
 
   getRefundPrice = (price: number = 0) => {
-    const { orderId, productId, amount, reason: { value }} = this.state;
-    getRefundPrice(orderId, productId, amount, value).then((res: any) => {
+    const { orderId, productId, amount, reason: { value }, aftersaleId } = this.state;
+    getRefundPrice(orderId, productId, amount, value, aftersaleId).then((res: any) => {
       this.setState({ ...res.afterSaleMakeRefundSubject, price });
     }).catch(Message.error);
   }
@@ -210,7 +210,7 @@ class App extends React.Component<IProps, IState> {
               含邮费<span> ¥ {numberToMoney(expectRefundTransferFee)}</span>
               </div>
             </div>
-            <label htmlFor="price" className={Styles.priceNum}>¥ {numberToMoney(price)}</label>
+            <label htmlFor="price" className={Styles.priceNum}>¥ {Number(price) > 0 ? numberToMoney(price) : <span>金额</span>}</label>
             <input
               id="price"
               type="number"

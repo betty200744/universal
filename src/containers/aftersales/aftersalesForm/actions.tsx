@@ -1,14 +1,23 @@
 import { post } from '@util/srequest';
 import { apiUrl } from '../../../utils/constant';
 
-export const getRefundPrice = (orderId: string, productId: string, amount: number, reasonCode: string) => {
-  const query = `query($orderId: ID!, $product: ID!, $amount: Int, $reasonCode: Int){
-    afterSaleMakeRefundSubject(orderId: $orderId, product: $product, amount: $amount, reasonCode: $reasonCode) {
+export const getRefundPrice = (orderId: string, productId: string, amount: number, reasonCode: string, aftersaleId: string) => {
+  const query = `query($orderId: ID!, $product: ID!, $amount: Int, $reasonCode: Int, $filterId: ID){
+    afterSaleMakeRefundSubject(orderId: $orderId, product: $product, amount: $amount, reasonCode: $reasonCode, filterId: $filterId) {
       expectRefundTransferFee
       totalPrice
     }
   }`;
-  const variables = { orderId, product: productId, amount, reasonCode };
+  const variables = {
+    orderId,
+    product: productId,
+    amount,
+    reasonCode,
+    filterId: '',
+  };
+  if (aftersaleId) {
+    variables.filterId = aftersaleId;
+  }
   return post(apiUrl, { query, variables });
 };
 

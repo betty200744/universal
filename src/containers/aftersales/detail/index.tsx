@@ -86,7 +86,7 @@ class App extends React.Component<IProps, IState> {
         'serialNo', 'type', 'state', 'expireDate',
         'create', 'revokedTimes', 'sellerInfo',
         'logistics', 'sellerLogistics', 'rejectInfo',
-        'checkDate', 'expireDate', 'cancelDate', 'orderId',
+        'checkDate', 'expireDate', 'cancelDate',
       ];
       this.setState({
         ...pick(data, pickItem),
@@ -100,6 +100,7 @@ class App extends React.Component<IProps, IState> {
         },
         totalPrice: data.totalPrice,
         productId: data.productInfo.product.id,
+        orderId: data.order,
       });
     }).catch(Message.error);
 
@@ -111,7 +112,7 @@ class App extends React.Component<IProps, IState> {
 
   modifyApply = () => {
     const { orderId, productId, id } = this.state;
-    goToAftersalesPage(`home?order=${orderId}&product=${productId}&aftersale=${id}`);
+    goToAftersalesPage(`/home?order=${orderId}&product=${productId}&aftersale=${id}`);
   }
 
   gotoExpress = () => {
@@ -126,7 +127,7 @@ class App extends React.Component<IProps, IState> {
       return (
         <Submit className={Styles.submit}>
           <Button type="danger-light" width={11.1} height={3.4}>撤销申请</Button>
-          <Button type="danger-light" width={11.1} height={3.4}>修改申请</Button>
+          <Button type="danger-light" width={11.1} height={3.4} onClick={this.modifyApply}>修改申请</Button>
           <Button type="danger-light" width={11.1} height={3.4} onClick={this.getSupport}>联系客服</Button>
         </Submit>
       );

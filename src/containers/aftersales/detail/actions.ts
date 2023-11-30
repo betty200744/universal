@@ -5,6 +5,7 @@ export const getDetail = (afterSaleId: string) => {
   const query = `query($afterSaleId: ID!){
     afterSaleDetail(afterSaleId: $afterSaleId) {
       id
+      order
       serialNo
       type
       state
