@@ -54,3 +54,12 @@ export const getDetail = (afterSaleId: string) => {
   const variables = { afterSaleId };
   return post(apiUrl, { query, variables });
 };
+
+
+export const cancel = (afterSaleId: string) => {
+  const query = `mutation($afterSaleId: !ID) {
+    cancelAfterSale(afterSaleId: $afterSaleId)
+  }`;
+  const variables = { afterSaleId };
+  return post(apiUrl, { query, variables });
+};

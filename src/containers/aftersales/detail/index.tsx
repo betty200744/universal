@@ -3,20 +3,26 @@ import Prograss from './progress';
 import Info from './aftersalesInfo';
 import TopState from './topState';
 import Panel from '../components/panel';
+import Picker from '../components/picker';
 import { Button, Message, Image, Title } from '../../../components';
 import { grayArrow } from '../../../utils/imgUrl';
-import { getDetail } from './actions';
+import { getDetail, cancel } from './actions';
 import { goToAftersalesPage, getSupport, pageListenGoBack } from '../../../utils/common';
 import MainContent from './mainContant';
 import Submit from '../components/submit';
 const Styles = require('./index.less');
 const pick = require('lodash/pick');
 
+const reasonOptions: Array<Option> = [
+  { value: '1', label: '撤销申请' },
+];
+
 interface IProps {
   match: any;
 }
 
 interface IState {
+  showOptions: boolean;
   id: string;
   orderId: string;
   productId: string;
@@ -39,6 +45,7 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
+      showOptions: true,
       id: this.props.match.params.id,
       orderId: '',
       productId: '',
@@ -103,7 +110,6 @@ class App extends React.Component<IProps, IState> {
         orderId: data.order,
       });
     }).catch(Message.error);
-
   }
 
   getSupport = () => {
@@ -120,13 +126,33 @@ class App extends React.Component<IProps, IState> {
     goToAftersalesPage(`/express/${id}`);
   }
 
+  reApply = () => {
+    const { orderId, productId } = this.state;
+    goToAftersalesPage(`/home?order=${orderId}&product=${productId}`);
+  }
+
+  onClickPicker = (e: Option) => {
+    if (e.value === '1') {
+      this.revoke();
+    }
+  }
+
+  revoke = () => {
+    const { id } = this.state;
+    cancel(id).then((res: any) => {
+      Message.success('撤销成功');
+      this.setState({ showOptions: false });
+      this.fetchDetail();
+    }).catch(Message.error);
+  }
+
   renderSubmit() {
     const { state } = this.state;
     switch (state) {
     case 'apply': {
       return (
         <Submit className={Styles.submit}>
-          <Button type="danger-light" width={11.1} height={3.4}>撤销申请</Button>
+          <Button type="danger-light" width={11.1} height={3.4} onClick={() => this.setState({ showOptions: true })}>撤销申请</Button>
           <Button type="danger-light" width={11.1} height={3.4} onClick={this.modifyApply}>修改申请</Button>
           <Button type="danger-light" width={11.1} height={3.4} onClick={this.getSupport}>联系客服</Button>
         </Submit>
@@ -144,7 +170,7 @@ class App extends React.Component<IProps, IState> {
       return (
         <Submit className={Styles.submit}>
           <Button type="danger-light" width={17.2} height={3.4} onClick={this.getSupport}>联系客服</Button>
-          <Button type="danger" width={17.2} height={3.4}>重新申请</Button>
+          <Button type="danger" width={17.2} height={3.4} onClick={this.reApply}>重新申请</Button>
         </Submit>
       );
     }
@@ -162,7 +188,7 @@ class App extends React.Component<IProps, IState> {
     const {
       review, type, reason, phone, create, serialNo,
       totalPrice, id, state, expireDate, cancelDate,
-      sellerInfo, logistics, checkDate,
+      sellerInfo, logistics, checkDate, showOptions,
     } = this.state;
     const reimburse = type === 'reimburse';
     return (
@@ -207,6 +233,14 @@ class App extends React.Component<IProps, IState> {
         />
 
         {this.renderSubmit()}
+
+        <Picker
+          show={showOptions}
+          options={reasonOptions}
+          label="如有问题可二次申请"
+          onClick={this.onClickPicker}
+          onClickCancel={() => this.setState({ showOptions: false })}
+        />
       </div>
     );
   }
