@@ -239,6 +239,7 @@ class App extends React.Component<IProps, IState> {
           options={reasonOptions}
           label="如有问题可二次申请"
           onClick={this.onClickPicker}
+          danger={true}
           onClickCancel={() => this.setState({ showOptions: false })}
         />
       </div>

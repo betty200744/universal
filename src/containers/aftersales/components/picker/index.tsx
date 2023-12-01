@@ -9,6 +9,7 @@ interface Options {
 
 interface IProps {
   show: boolean;
+  danger?: boolean;
   label: string;
   options: Array<Options>;
   onClick(e: Options): void;
@@ -34,17 +35,20 @@ class App extends React.Component<IProps, IState> {
   }
 
   render() {
-    const { label, options, onClick, onClickCancel, show } = this.props;
+    const { label, options, onClick, onClickCancel, show, danger = false } = this.props;
     return (
       <div className={Styles.container} style={{ visibility: show ? 'visible' : 'hidden' }} >
         <div className={Styles.modal}></div>
         <div className={classnames(Styles.picker, show && Styles.pickerActive)}>
           <div className={classnames(Styles.pickerItem, Styles.pickerTop)}>
             <div className={Styles.pickerLabel}>{label}</div>
-            {options.map(e => (<div className={Styles.options} key={e.value} onClick={() => {
-              onClick(e);
-              onClickCancel();
-            }}>{e.label}</div>))}
+            {options.map(e => (<div className={Styles.options}
+              style={{ color: danger ? '#ff3c50' : '#007aff' }}
+              key={e.value}
+              onClick={() => {
+                onClick(e);
+                onClickCancel();
+              }}>{e.label}</div>))}
             <div></div>
           </div>
           <div className={classnames(Styles.pickerItem, Styles.pickerCancel)} onClick={() => onClickCancel()}>
