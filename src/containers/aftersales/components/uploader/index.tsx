@@ -95,7 +95,7 @@ class App extends React.Component<IProps, IState> {
           id="file"
           name="file"
           multiple
-          accept=".png, .jpg, .jpeg"
+          // accept=".png, .jpg, .jpeg"
           onChange={this.onChange}
         />
       </div>
