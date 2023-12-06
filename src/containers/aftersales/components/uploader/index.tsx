@@ -2,6 +2,7 @@ import * as React from 'react';
 import Cookies from 'js-cookie';
 import * as superagent from 'superagent';
 import { post } from '@util/srequest';
+import { isIos } from '@util/useragent';
 import { Message, Image as UIImage } from '../../../../components';
 import { uploadBg } from '../../../../utils/imgUrl';
 const Styles = require('./index.less');
@@ -95,7 +96,7 @@ class App extends React.Component<IProps, IState> {
           id="file"
           name="file"
           multiple
-          // accept=".png, .jpg, .jpeg"
+          accept={isIos() ? '.png, .jpg, .jpeg' : 'image/*'}
           onChange={this.onChange}
         />
       </div>
