@@ -45,7 +45,7 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      showOptions: true,
+      showOptions: false,
       id: this.props.match.params.id,
       orderId: '',
       productId: '',
