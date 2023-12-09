@@ -266,9 +266,10 @@ class App extends React.Component<IProps, IState> {
             </div>
 
             <Uploader
-              onDelete={(i) => this.setState((prevState) => ({
-                images: prevState.images.splice(i - 1, 1),
-              }))}
+              onDelete={(i) => {
+                images.splice(i, 1);
+                this.setState({ images: [...images] });
+              }}
               onChange={(e: Array<string>) => this.setState((prevState) => ({
                 images: [...prevState.images, ...e],
               }))}
