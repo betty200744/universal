@@ -23,6 +23,7 @@ interface IProps {
 
 interface IState {
   showOptions: boolean;
+  revokedTimes: number;
   id: string;
   orderId: string;
   productId: string;
@@ -45,6 +46,7 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
+      revokedTimes: 0,
       showOptions: false,
       id: this.props.match.params.id,
       orderId: '',
@@ -147,12 +149,12 @@ class App extends React.Component<IProps, IState> {
   }
 
   renderSubmit() {
-    const { state } = this.state;
+    const { state, revokedTimes } = this.state;
     switch (state) {
     case 'apply': {
       return (
         <Submit className={Styles.submit}>
-          <Button type="danger-light" width={11.1} height={3.4} onClick={() => this.setState({ showOptions: true })}>撤销申请</Button>
+          <Button type="danger-light" width={11.1} height={3.4} disabled={revokedTimes >= 2} onClick={() => this.setState({ showOptions: true })}>撤销申请</Button>
           <Button type="danger-light" width={11.1} height={3.4} onClick={this.modifyApply}>修改申请</Button>
           <Button type="danger-light" width={11.1} height={3.4} onClick={this.getSupport}>联系客服</Button>
         </Submit>
@@ -188,7 +190,7 @@ class App extends React.Component<IProps, IState> {
     const {
       review, type, reason, phone, create, serialNo,
       totalPrice, id, state, expireDate, cancelDate,
-      sellerInfo, logistics, checkDate, showOptions,
+      sellerInfo, logistics, checkDate, showOptions, revokedTimes,
     } = this.state;
     const reimburse = type === 'reimburse';
     return (
@@ -237,7 +239,7 @@ class App extends React.Component<IProps, IState> {
         <Picker
           show={showOptions}
           options={reasonOptions}
-          label="如有问题可二次申请"
+          label={revokedTimes < 1 ? '如有问题可二次申请' : '此次撤销将不能再申请'}
           onClick={this.onClickPicker}
           danger={true}
           onClickCancel={() => this.setState({ showOptions: false })}
