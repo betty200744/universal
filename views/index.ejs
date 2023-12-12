@@ -45,12 +45,15 @@
   <!-- <script src="./node_modules/react/umd/react.development.js"></script>
         <script src="./node_modules/react-dom/umd/react-dom.development.js"></script> -->
   <% if(raven) { %>
-  <script src="//cdn.image.huoqiuapp.com/admin/cdn/js/raven.3.22.1.min.js"></script>
+  <script src="//cdn.image.huoqiuapp.com/admin/cdn/js/raven.3.22.1.min.js" crossorigin="anonymous"></script>
   <script>
-    Raven.config('https://a70a056694424f49bfc1814f7ee41b90@sentry.io/1217612', {
-      release: '1-1-1',
+    Raven.config('https://4b03d0e6811546f49e1d0d6893981d13@sentry.io/1237087', {
+      release: '1-0-0',
       environment: 'production',
     }).install()
+    Raven.context(function () {
+      initMyApp();
+    });
   </script>
   <% } %>
   <!-- Main -->
