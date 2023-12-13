@@ -18,7 +18,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class AftersalesInfo extends React.Component<IProps, IState> {
   render() {
     const { review, type, reason, phone, create, serialNo, totalPrice, noSpec } = this.props;
     return (
@@ -40,4 +40,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default AftersalesInfo;

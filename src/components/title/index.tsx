@@ -1,7 +1,6 @@
 //<Title title="我的选品" rightText="编辑选品" goBack />
 
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import { isFireball, isWeixin } from '@util/useragent';
 import history from '../../utils/history';
 import { goBack as nativeGoBack } from '../../utils/jsbridge';
@@ -45,4 +44,4 @@ class Title extends React.Component<IProps, IState> {
   }
 }
 
-export default withRouter(Title as any) as any;
+export default Title;

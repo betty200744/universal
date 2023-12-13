@@ -44,7 +44,7 @@ interface IState {
   aftersaleId: string;
 }
 
-class App extends React.Component<IProps, IState> {
+class ApplyAftersales extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -106,4 +106,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default ApplyAftersales;

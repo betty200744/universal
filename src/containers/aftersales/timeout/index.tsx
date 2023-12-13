@@ -7,7 +7,7 @@ interface IProps { }
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class Timeout extends React.Component<IProps, IState> {
   render() {
     return (
       <div>
@@ -32,4 +32,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Timeout;

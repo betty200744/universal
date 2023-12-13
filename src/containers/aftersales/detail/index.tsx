@@ -42,7 +42,7 @@ interface IState {
   logistics: LogisticInfo;
 }
 
-class App extends React.Component<IProps, IState> {
+class Detail extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -249,4 +249,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Detail;

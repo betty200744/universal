@@ -18,7 +18,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class Picker extends React.Component<IProps, IState> {
   disableScroll = (e: MouseEvent) => {
     console.log(e);
     if (this.props.show) {
@@ -60,4 +60,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Picker;

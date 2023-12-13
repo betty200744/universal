@@ -18,7 +18,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class Uploader extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {};
@@ -104,4 +104,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Uploader;

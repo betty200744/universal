@@ -57,7 +57,7 @@ interface IState {
   list: Array<Item>;
 }
 
-class App extends React.Component<IProps, IState> {
+class Negotiate extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -113,4 +113,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Negotiate;

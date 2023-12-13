@@ -1,0 +1,203 @@
+* {
+  font-family: PingFang SC, Proxima nova,Proxima,Helvetica Neue,Helvetica,Source Han Sans CN,Source Han Sans SC,Microsoft YaHei,ST Heiti,SimHei,sans-serif;;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.header {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 18px 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  /* background-image: url('/jsx/containers/logistics/img/map-bg@2x.png'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header > div {
+  display: inline-block;
+  font-size: 12px;
+  color: #424242;
+}
+
+.companyBox {
+  width: 30%;
+  vertical-align: top;
+}
+
+.serialNoBox {
+  width: 65%;
+  vertical-align: top;
+}
+
+.companyBox > div:nth-child(1), .serialNoBox > div:nth-child(1) {
+  height: 12px;
+  margin-bottom: 12px;
+}
+
+.companyBox .company {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.serialNoBox .flexBox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.serialNoBox .serialNo, .serialNoBox .copy {
+  display: inline-block;
+}
+
+.serialNoBox .serialNo {
+  font-size: 16px;
+  color: #ababab;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.serialNoBox .copy {
+  position: relative;
+  top: -0.5px;
+  width: 50px;
+  font-size: 14px;
+  color: #424242;
+  text-align: center;
+}
+
+/* loading */
+.loading {
+  width: 100%;
+  height: 100%;
+}
+
+.loadingText {
+  width: 100%;
+  padding-top: 160px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
+
+/* error */
+.error {
+  width: 100%;
+  height: 100%;
+  padding-top: 160px;
+  text-align: center;
+}
+
+.error .desc {
+  font-size: 14px;
+  color: #222;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.error .retry {
+  display: inline-block;
+  width: 110px;
+  height: 42px;
+  margin-top: 45px;
+  padding: 0 16px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #222;
+  border-radius: 5px;
+	border: solid 1px #e6e6e6;
+}
+
+/* noLogistics */
+.noLogistics {
+  width: 100%;
+  height: 100%;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.noLogistics div {
+  margin-top: 20px;
+  color: #ababab;
+  font-size: 14px;
+}
+
+/* list */
+.timeline {
+  padding: 140px 25px 25px 25px;
+}
+
+.timeline .timelineBox {
+  min-height: 100%;
+  border-left: 1px dashed #dddddd;
+}
+
+.item {
+  position: relative;
+  top: -25px;
+  margin-bottom: 45px;
+  padding-left: 20px;
+}
+
+.item:nth-last-child(1) {
+  margin-bottom: 0;
+}
+
+.item.current img {
+  position: absolute;
+  top: 18px;
+  left: -11px;
+}
+
+.item.ago .point {
+  position: absolute;
+  top: 20px;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+}
+
+.item:nth-last-child(1) .point {
+  height: calc(100% + 25px);
+}
+
+.item.ago .point div {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+.item.current > div:nth-child(2) {
+  color: #424242;
+}
+
+.item > div:nth-child(1) {
+  line-height: 20px;
+  font-size: 12px;
+  color: #ababab;
+}
+
+.item.ago > div:nth-child(2) {
+  font-size: 14px;
+  color: #999;
+  line-height: 20px;
+}

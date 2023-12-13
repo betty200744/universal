@@ -12,7 +12,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class NumberInput extends React.Component<IProps, IState> {
   onIncrease = () => {
     const { value, maxValue, onChange } = this.props;
     console.log(value);
@@ -42,4 +42,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default NumberInput;

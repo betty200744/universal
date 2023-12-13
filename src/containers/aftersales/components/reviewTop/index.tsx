@@ -9,7 +9,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class ReviewTop extends React.Component<IProps, IState> {
   render() {
     const { review, noSpec } = this.props;
     return (
@@ -24,4 +24,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default ReviewTop;

@@ -18,7 +18,7 @@ interface IState {
   list: Array<ItemFace>;
 }
 
-class App extends React.Component<IProps, IState> {
+class List extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -74,4 +74,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default List;

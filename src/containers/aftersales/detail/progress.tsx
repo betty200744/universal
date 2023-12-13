@@ -11,7 +11,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class Progress extends React.Component<IProps, IState> {
   render() {
     const { state, reimburse = true } = this.props;
     const map = !reimburse ? stateOptions.slice(0, 4) : [stateOptions[0], stateOptions[4]];
@@ -32,4 +32,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default Progress;

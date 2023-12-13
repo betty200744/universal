@@ -42,7 +42,7 @@ const reasonText = [
 
 
 
-class App extends React.Component<IProps, IState> {
+class AftersalesForm extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -295,4 +295,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default AftersalesForm;

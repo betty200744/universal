@@ -15,7 +15,7 @@ interface IProps {
 
 interface IState { }
 
-class App extends React.Component<IProps, IState> {
+class ListItem extends React.Component<IProps, IState> {
   render() {
     const { review, channel, type, state, id } = this.props;
     return (
@@ -48,4 +48,4 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+export default ListItem;
