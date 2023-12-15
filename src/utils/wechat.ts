@@ -1,6 +1,7 @@
 import { post } from '@util/srequest';
 import { isWeixin } from '@util/useragent';
 import Cookie from 'js-cookie';
+import { apiUrl } from './constant';
 
 export const isAuthed = () => {
   if (isWeixin()) {
@@ -23,7 +24,7 @@ export const auth = () => {
       hostname: window.location.origin,
       endPoint: window.location.pathname + window.location.search + window.location.hash,
     };
-    post('/api/graphql', { query, variables }).then((result: any) => {
+    post(apiUrl, { query, variables }).then((result: any) => {
       // console.log(result.wechatH5Login);
       window.location.href = result.wechatH5Login;
     });
