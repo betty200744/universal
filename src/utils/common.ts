@@ -9,7 +9,7 @@ import {
 import history from './history';
 
 
-export const validateAndTips = (condition: boolean, message: string) => {
+const validateAndTips = (condition: boolean, message: string) => {
   if (!condition) {
     Message.error(message);
   }
