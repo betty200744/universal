@@ -5,9 +5,9 @@ import { Switch, Route, Router } from 'react-router-dom';
 import { isFireball } from '@util/useragent';
 import { jsBridgeReady } from '@util/jsbridge';
 import {
-  afterSalesHome, afterSalesForm, afterSalesDetail,
-  afterSalesNegotiate, afterSalesExpress, afterSalesList,
-  afterSalesTimeout,
+  AfterSalesHome, AfterSalesForm, AfterSalesDetail,
+  AfterSalesNegotiate, AfterSalesExpress, AfterSalesList,
+  AfterSalesTimeout, Logistics,
 } from './indexChunk';
 import history from './utils/history';
 import configStore from './store';
@@ -16,17 +16,18 @@ import './styles/font.less';
 const store = configStore();
 
 const afterSalesRoutes = [
-  { path: '/home', exact: true, component: afterSalesHome },
-  { path: '/form', exact: true, component: afterSalesForm },
-  { path: '/detail/:id', exact: true, component: afterSalesDetail },
-  { path: '/list', exact: true, component: afterSalesList },
-  { path: '/negotiate/:id', exact: true, component: afterSalesNegotiate },
-  { path: '/express/:id', exact: true, component: afterSalesExpress },
-  { path: '/timeout', exact: true, component: afterSalesTimeout },
+  { path: '/home', exact: true, component: AfterSalesHome },
+  { path: '/form', exact: true, component: AfterSalesForm },
+  { path: '/detail/:id', exact: true, component: AfterSalesDetail },
+  { path: '/list', exact: true, component: AfterSalesList },
+  { path: '/negotiate/:id', exact: true, component: AfterSalesNegotiate },
+  { path: '/express/:id', exact: true, component: AfterSalesExpress },
+  { path: '/timeout', exact: true, component: AfterSalesTimeout },
+  { path: '/logistics', exact: true, component: Logistics },
 ];
 
 const otherRoutes = [
-  { path: '/home', exact: true, component: afterSalesHome },
+  { path: '/home', exact: true, component: AfterSalesHome },
 ];
 
 const routes = [

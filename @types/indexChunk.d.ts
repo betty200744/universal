@@ -1,7 +1,8 @@
-export declare const afterSalesHome: any;
-export declare const afterSalesForm: any;
-export declare const afterSalesDetail: any;
-export declare const afterSalesList: any;
-export declare const afterSalesNegotiate: any;
-export declare const afterSalesExpress: any;
-export declare const afterSalesTimeout: any;
+export declare const AfterSalesHome: any;
+export declare const AfterSalesForm: any;
+export declare const AfterSalesDetail: any;
+export declare const AfterSalesList: any;
+export declare const AfterSalesNegotiate: any;
+export declare const AfterSalesExpress: any;
+export declare const AfterSalesTimeout: any;
+export declare const Logistics: any;

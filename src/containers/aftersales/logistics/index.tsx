@@ -1,9 +1,10 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import { get } from '@util/srequest';
+import { post } from '@util/srequest';
 import { isFireball } from '@util/useragent';
 import { getQuery, convertTimeString } from '../../../utils/common';
 import { copyText } from '../../../utils/jsbridge';
+import { apiUrl } from '../../../utils/constant';
 const Styles = require('./index.less');
 
 interface IProps {
@@ -52,21 +53,18 @@ class Logistics extends React.Component<IProps, IState> {
   }
   search() {
     const { serialNo, logisticsSerialNo, logisticsCompany } = this.state;
-    let url = '';
-    get(url, { serialNo, logisticsSerialNo, logisticsCompany }).then((result: any) => {
-      const data = result.body;
-      if (data.ok) {
-        if (data.result && data.result.length > 0) {
-          this.setState({ logisticsList: data.result });
-        } else {
-          this.setState({
-            error: true,
-            logisticsList: [{
-              AcceptTime: convertTimeString(new Date()),
-              AcceptStation: '您的订单已提交仓库处理',
-            }],
-          });
-        }
+    const query = `query($serialNo: string, logisticsCompany: string, $logisticsNo: logisticsNo){
+      logistics(serialNo: $serialNo, logisticsCompany: $logisticsCompany, logisticsNo: $logisticsNo) {
+        Action
+        AcceptTime
+        AcceptStation
+        Location
+      }
+    }`;
+    const variables = { serialNo, logisticsSerialNo, logisticsCompany };
+    post(apiUrl, { query, variables }).then((res: any) => {
+      if (res.logistics && res.logistics.length > 0) {
+        this.setState({ logisticsList: res.logistics });
       } else {
         this.setState({
           error: true,
@@ -76,6 +74,14 @@ class Logistics extends React.Component<IProps, IState> {
           }],
         });
       }
+    }).catch(() => {
+      this.setState({
+        error: true,
+        logisticsList: [{
+          AcceptTime: convertTimeString(new Date()),
+          AcceptStation: '您的订单已提交仓库处理',
+        }],
+      });
     });
   }
   renderList() {
