@@ -1,1 +1,1 @@
-export const apiUrl = '/api/porygon/graphql';
+export const apiUrl = '/porygon/api/graphql';

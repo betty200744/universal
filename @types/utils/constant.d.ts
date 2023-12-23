@@ -1,1 +1,1 @@
-export declare const apiUrl = "/api/porygon/graphql";
+export declare const apiUrl = "/porygon/api/graphql";
