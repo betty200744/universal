@@ -14,7 +14,7 @@ export const getDetail = (afterSaleId: string) => {
       revokedTimes
       totalPrice
       applyInfo {
-        resaon
+        reason
         phone
       }
       productInfo {
