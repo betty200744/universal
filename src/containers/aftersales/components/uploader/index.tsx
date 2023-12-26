@@ -32,7 +32,7 @@ class Uploader extends React.Component<IProps, IState> {
         const query = `query {
           getQiniuUploadToken
         }`;
-        post('/api/distribution/graphql', { query }).then((res: any) => {
+        post('/distribution/api/graphql', { query }).then((res: any) => {
           const expiresTime = new Date(Date.now() + (3000 * 1000));  // 七牛token 3600 秒过期；
           Cookies.set('qiniuToken', res.getQiniuUploadToken, { expires: expiresTime });
           resolve(res.getQiniuUploadToken);
