@@ -94,7 +94,7 @@ class ApplyAftersales extends React.Component<IProps, IState> {
     const { review } = this.state;
     return (
       <div>
-        <Title title="122" goBack />
+        <Title title="申请售后" goBack />
 
         <ReviewTop review={review} />
 

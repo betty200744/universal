@@ -5,6 +5,7 @@ import { post } from '@util/srequest';
 import { isIos } from '@util/useragent';
 import { Message, Image as UIImage } from '../../../../components';
 import { uploadBg } from '../../../../utils/imgUrl';
+import { apiUrl } from '../../../../utils/constant';
 const Styles = require('./index.less');
 
 function getRandomInt(max: number) {
@@ -32,7 +33,7 @@ class Uploader extends React.Component<IProps, IState> {
         const query = `query {
           getQiniuUploadToken
         }`;
-        post('/distribution/api/graphql', { query }).then((res: any) => {
+        post(apiUrl, { query }).then((res: any) => {
           const expiresTime = new Date(Date.now() + (3000 * 1000));  // 七牛token 3600 秒过期；
           Cookies.set('qiniuToken', res.getQiniuUploadToken, { expires: expiresTime });
           resolve(res.getQiniuUploadToken);
