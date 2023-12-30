@@ -5,8 +5,8 @@
     "noImplicitAny": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationDir": "./@types",
+    // "declaration": true,
+    // "declarationDir": "./@types",
     "target": "ES3",
     "jsx": "react",
     "lib": [

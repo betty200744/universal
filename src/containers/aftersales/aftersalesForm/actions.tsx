@@ -83,6 +83,7 @@ export const createAfterSale = (
       reasonCode,
       images,
       description,
+      phone,
     },
   };
   return post(apiUrl, { query, variables });
