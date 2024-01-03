@@ -37,7 +37,7 @@ class List extends React.Component<IProps, IState> {
     fetchData().then((res: any) => {
       const list = res.afterSaleList;
       this.setState({
-        list: list.map((e: any) => {
+        list: list.filter((e: any) => !!e.productInfo.product).map((e: any) => {
           return {
             review: {
               _id: e.productInfo.product.id,
