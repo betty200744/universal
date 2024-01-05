@@ -137,7 +137,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
   }
 
   submit = () => {
-    const { orderId, productId, amount, reason: { value }, type, price, description, images, phone } = this.state;
+    const { orderId, productId, amount, reason: { value }, type, price, description, images, phone, spec } = this.state;
 
     const conditions = [
       { condition: Number(value) >= 0, message: '请选择申请原因' },
@@ -157,7 +157,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
         return;
       }
     }
-    createAfterSale(orderId, type, price, productId, amount, value, phone, description, images).then((res: any) => {
+    createAfterSale(orderId, type, price, productId, amount, value, phone, description, images, spec).then((res: any) => {
       goToAftersalesPage(`/detail/${res.createAfterSale}`);
     }).catch(Message.error);
   }

@@ -70,6 +70,7 @@ export const createAfterSale = (
   phone: string,
   description: string,
   images: Array<string>,
+  spec: string,
 ) => {
   const query = `mutation($orderId: ID!, $apply: Apply) {
     createAfterSale(orderId: $orderId, apply: $apply)
@@ -84,6 +85,7 @@ export const createAfterSale = (
       images,
       description,
       phone,
+      spec,
     },
   };
   return post(apiUrl, { query, variables });
