@@ -214,7 +214,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
             <input
               id="price"
               type="number"
-              pattern="\d*"
+              pattern="(\d|.)*"
               min="0"
               max={totalPrice}
               value={price}
