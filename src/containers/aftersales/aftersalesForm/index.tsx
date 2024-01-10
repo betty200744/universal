@@ -137,7 +137,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
   }
 
   submit = () => {
-    const { orderId, productId, amount, reason: { value }, type, price, description, images, phone, spec } = this.state;
+    const { orderId, productId, amount, reason: { value }, type, price, description, images, phone, review: { spec }} = this.state;
 
     const conditions = [
       { condition: Number(value) >= 0, message: '请选择申请原因' },
