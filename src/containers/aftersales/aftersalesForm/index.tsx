@@ -131,6 +131,10 @@ class AftersalesForm extends React.Component<IProps, IState> {
 
   getRefundPrice = (price: number = 0) => {
     const { orderId, productId, amount, reason: { value }, aftersaleId } = this.state;
+    // 防止无理由的获取退款金额
+    if (value === '-1') {
+      return false;
+    }
     getRefundPrice(orderId, productId, amount, value, aftersaleId).then((res: any) => {
       this.setState({ ...res.afterSaleMakeRefundSubject, price });
     }).catch(Message.error);
