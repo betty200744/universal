@@ -104,7 +104,7 @@ class Detail extends React.Component<IProps, IState> {
           _id: data.productInfo.product.id,
           img: data.productInfo.product.img,
           spec: data.productInfo.spec,
-          amount: 0,
+          amount: data.productInfo.amount,
           name: data.review.name,
         },
         totalPrice: data.totalPrice,
@@ -231,7 +231,6 @@ class Detail extends React.Component<IProps, IState> {
           create={create}
           serialNo={serialNo}
           totalPrice={totalPrice}
-          noSpec={reimburse}
         />
 
         {this.renderSubmit()}

@@ -13,18 +13,17 @@ interface IProps {
   create: string;
   serialNo: string;
   totalPrice: number;
-  noSpec: boolean;
 }
 
 interface IState { }
 
 class AftersalesInfo extends React.Component<IProps, IState> {
   render() {
-    const { review, type, reason, phone, create, serialNo, totalPrice, noSpec } = this.props;
+    const { review, type, reason, phone, create, serialNo, totalPrice } = this.props;
     return (
       <Panel className={Styles.info}>
         <div className={Styles.infoTitle}>售后信息</div>
-        <ReviewTop review={review} noSpec={noSpec} />
+        <ReviewTop review={review} />
 
         <div className={Styles.infoDetail}>
           <div>售后类型：{typeMap[type]}</div>
