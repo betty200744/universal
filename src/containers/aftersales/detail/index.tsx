@@ -104,7 +104,7 @@ class Detail extends React.Component<IProps, IState> {
           _id: data.productInfo.product.id,
           img: data.productInfo.product.img,
           spec: data.productInfo.spec,
-          amount: data.productInfo.amount,
+          amount: 0,
           name: data.review.name,
         },
         totalPrice: data.totalPrice,
