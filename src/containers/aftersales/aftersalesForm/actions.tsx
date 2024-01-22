@@ -44,7 +44,7 @@ export const fetchAftersale = (afterSaleId: string) => {
     afterSaleDetail(afterSaleId: $afterSaleId) {
       type
       applyInfo {
-        resaon
+        reason
         phone
         reasonCode
         images
@@ -89,5 +89,35 @@ export const createAfterSale = (
     },
   };
   return post(apiUrl, { query, variables });
+};
 
+export const editAfterSale = (
+  afterSaleId: string,
+  type: string,
+  totalPrice: string,
+  product: string,
+  amount: number,
+  reasonCode: string,
+  phone: string,
+  description: string,
+  images: Array<string>,
+  spec: string,
+) => {
+  const query = `mutation($afterSaleId: ID!, $apply: Apply) {
+    editAfterSale(afterSaleId: $afterSaleId, apply: $apply)
+  }`;
+  const variables = {
+    afterSaleId, apply: {
+      type,
+      totalPrice,
+      product,
+      amount,
+      reasonCode,
+      images,
+      description,
+      phone,
+      spec,
+    },
+  };
+  return post(apiUrl, { query, variables });
 };

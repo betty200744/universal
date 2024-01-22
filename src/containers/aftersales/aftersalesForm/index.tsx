@@ -8,7 +8,7 @@ import Uploader from '../components/uploadImage';
 import Submit from '../components/submit';
 import { grayArrow } from '../../../utils/imgUrl';
 import { getQuery, goToAftersalesPage, numberToMoney, isValidated } from '../../../utils/common';
-import { getRefundPrice, fetchData, createAfterSale, fetchAftersale } from './actions';
+import { getRefundPrice, fetchData, createAfterSale, fetchAftersale, editAfterSale } from './actions';
 const Styles = require('./index.less');
 
 interface IProps { }
@@ -141,7 +141,10 @@ class AftersalesForm extends React.Component<IProps, IState> {
   }
 
   submit = () => {
-    const { orderId, productId, amount, reason: { value }, type, price, description, images, phone, review: { spec }} = this.state;
+    const {
+      orderId, productId, amount, reason: { value }, aftersaleId,
+      type, price, description, images, phone, review: { spec },
+    } = this.state;
 
     const conditions = [
       { condition: Number(value) >= 0, message: '请选择申请原因' },
@@ -161,9 +164,16 @@ class AftersalesForm extends React.Component<IProps, IState> {
         return;
       }
     }
-    createAfterSale(orderId, type, price, productId, amount, value, phone, description, images, spec).then((res: any) => {
-      goToAftersalesPage(`/detail/${res.createAfterSale}`);
-    }).catch(Message.error);
+    if (aftersaleId) {
+      editAfterSale(aftersaleId, type, price, productId, amount, value, phone, description, images, spec).then((res: any) => {
+        goToAftersalesPage(`/detail/${aftersaleId}`);
+      }).catch(Message.error);
+    } else {
+      createAfterSale(orderId, type, price, productId, amount, value, phone, description, images, spec).then((res: any) => {
+        goToAftersalesPage(`/detail/${res.createAfterSale}`);
+      }).catch(Message.error);
+    }
+
   }
 
   render() {
