@@ -29,7 +29,7 @@ interface IState {
   reasonOptions: Array<Option>;
   reason: Option;
   totalPrice: number;
-  expectRefundTransferFee: number;
+  refundTransferFee: number;
   phone: string;
   images: Array<string>;
   description: string;
@@ -66,7 +66,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
         label: '',
       },
       totalPrice: 0,
-      expectRefundTransferFee: 0,
+      refundTransferFee: 0,
       phone: '',
       images: [],
       description: '',
@@ -179,7 +179,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
   render() {
     const {
       amount, showOptions, review, reasonOptions, description, type,
-      reason, totalPrice, expectRefundTransferFee, phone, price, images,
+      reason, totalPrice, refundTransferFee, phone, price, images,
     } = this.state;
     const replacementDisabled = reason.value && amount && description && phone && images.length;
     const notReplacementDisabled = replacementDisabled && price;
@@ -221,7 +221,7 @@ class AftersalesForm extends React.Component<IProps, IState> {
               </div>
               <div className={Styles.priceNote}>
               最多 <span>¥ {numberToMoney(totalPrice)} </span>，
-              含邮费<span> ¥ {numberToMoney(expectRefundTransferFee)}</span>
+              含邮费<span> ¥ {numberToMoney(refundTransferFee)}</span>
               </div>
             </div>
             <label htmlFor="price" className={Styles.priceNum}>¥ {Number(price) > 0 ? numberToMoney(price) : <span>金额</span>}</label>

@@ -4,7 +4,7 @@ import { apiUrl } from '../../../utils/constant';
 export const getRefundPrice = (orderId: string, productId: string, amount: number, reasonCode: string, aftersaleId: string) => {
   const query = `query($orderId: ID!, $product: ID!, $amount: Int, $reasonCode: Int, $filterId: ID){
     afterSaleMakeRefundSubject(orderId: $orderId, product: $product, amount: $amount, reasonCode: $reasonCode, filterId: $filterId) {
-      expectRefundTransferFee
+      refundTransferFee
       totalPrice
     }
   }`;
