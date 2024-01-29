@@ -19,7 +19,10 @@ class ListItem extends React.Component<IProps, IState> {
   render() {
     const { review, channel, type, state, id } = this.props;
     return (
-      <div className={Styles.item}>
+      <div
+        className={Styles.item}
+        onClick={() => goToAftersalesPage(`/detail/${id}`)}
+      >
         <div className={Styles.itemTop}>
           <div>
             <Image src={channel.icon} />
@@ -38,7 +41,7 @@ class ListItem extends React.Component<IProps, IState> {
             type="default"
             width={8}
             height={2.9}
-            onClick={() => goToAftersalesPage(`/detail/${id}`)}
+
           >
             查看详情
           </Button>
