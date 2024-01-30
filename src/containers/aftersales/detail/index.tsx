@@ -40,6 +40,7 @@ interface IState {
   checkDate: string;
   sellerInfo: UserInfo;
   logistics: LogisticInfo;
+  sellerLogistics: LogisticInfo;
 }
 
 class Detail extends React.Component<IProps, IState> {
@@ -67,6 +68,10 @@ class Detail extends React.Component<IProps, IState> {
         comment: '',
       },
       logistics: {
+        company: '',
+        serial_no: '',
+      },
+      sellerLogistics: {
         company: '',
         serial_no: '',
       },
@@ -189,7 +194,7 @@ class Detail extends React.Component<IProps, IState> {
   render() {
     const {
       review, type, reason, phone, create, serialNo,
-      totalPrice, id, state, expireDate, cancelDate,
+      totalPrice, id, state, expireDate, cancelDate, sellerLogistics,
       sellerInfo, logistics, checkDate, showOptions, revokedTimes,
     } = this.state;
     const reimburse = type === 'reimburse';
@@ -214,6 +219,7 @@ class Detail extends React.Component<IProps, IState> {
           revoke={!!cancelDate}
           totalPrice={totalPrice}
           id={id}
+          sellerLogistics={sellerLogistics}
         />
 
         <Panel

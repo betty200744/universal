@@ -12,6 +12,7 @@ interface IProps {
   type: string;
   sellerInfo: UserInfo;
   logistics: LogisticInfo;
+  sellerLogistics: LogisticInfo;
   // 是否用户自己撤销
   revoke: boolean;
   id: string;
@@ -143,12 +144,12 @@ const Fail = ({ revoke }: {revoke: boolean}) => {
 
 class MainContent extends React.Component<IProps, IState> {
   render() {
-    const { state, type, sellerInfo, logistics, revoke, id, totalPrice } = this.props;
+    const { state, type, sellerInfo, logistics, revoke, id, totalPrice, sellerLogistics } = this.props;
     switch (state) {
     case 'apply': return (<div><Apply type={type} /></div>);
     case 'waitDelivered': return (<div><WaitDelivered sellerInfo={sellerInfo} id={id} /></div>);
     case 'waitConfirm': return (<div><WaitConfirm type={type} logistics={logistics} /></div>);
-    case 'complete': return (<div><Complete type={type} logistics={logistics} totalPrice={totalPrice} /></div>);
+    case 'complete': return (<div><Complete type={type} logistics={sellerLogistics} totalPrice={totalPrice} /></div>);
     case 'fail': return (<div><Fail revoke={revoke} /></div>);
     default: return <div></div>;
     }
