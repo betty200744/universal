@@ -7,8 +7,6 @@ console.log(process.env.NODE_ENV, process.env.NODE_ENV === 'production');
 
 // 这里配置 Plugin
 const qiniuPlugin = new QiniuPlugin({
-  ACCESS_KEY: 'Tor2L7aBu0znCFOhe1KE-czP3yng0hkVN--Cj33Q',
-  SECRET_KEY: 'iOxZi0M4kSZoLu5oibf95oHiiC7bfjafSawnik2Z',
   bucket: 'image-xinpinget',
   path: qiniu.endPoint,
 });
